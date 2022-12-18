@@ -14,11 +14,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../carSign.jpg"
+import { useNavigate } from "react-router-dom"; 
 const backgroundImage = img
 
 const theme = createTheme();
 
 export default function SignUp() {
+  const history = useNavigate();
+
     const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -115,7 +118,7 @@ export default function SignUp() {
                 Sign Up
               </Button>
               <Grid container>
-                <Grid item>
+                <Grid item onClick={history("/Log-In")} >
                   <Link href="#" variant="body2">
                   <span style={{fontWeight: 'bold', fontSize: '20' }}>Already have an account? Sign in</span>
                   </Link>

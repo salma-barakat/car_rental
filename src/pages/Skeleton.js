@@ -4,25 +4,33 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
+import Card from "../components/Card"
 
 const data = [
   {
     src: 'https://i.ytimg.com/vi/pLqipJNItIo/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBkklsyaw9FxDmMKapyBYCn9tbPNQ',
-    title: 'Don Diablo @ Tomorrowland Main Stage 2019 | Official…',
+    title: 'Fiat',
     channel: 'Don Diablo',
     views: '396k views',
     createdAt: 'a week ago',
   },
   {
     src: 'https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA',
-    title: 'Queen - Greatest Hits',
+    title: 'BMW',
     channel: 'Queen Official',
     views: '40M views',
     createdAt: '3 years ago',
   },
   {
     src: 'https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw',
-    title: 'Calvin Harris, Sam Smith - Promises (Official Video)',
+    title: 'SEAT',
+    channel: 'Calvin Harris',
+    views: '130M views',
+    createdAt: '10 months ago',
+  },
+  {
+    src: 'https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw',
+    title: 'SEAT2',
     channel: 'Calvin Harris',
     views: '130M views',
     createdAt: '10 months ago',
@@ -31,12 +39,12 @@ const data = [
 
 function Media(props) {
   const { loading = false } = props;
-
+ 
   return (
     <Grid container wrap="nowrap">
-      {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
+      {(loading ? Array.from(new Array(4)) : data).map((item, index) => (
         <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
-          {item ? (
+          {/* {item ? (
             <img
               style={{ width: 210, height: 118 }}
               alt={item.title}
@@ -63,7 +71,11 @@ function Media(props) {
               <Skeleton />
               <Skeleton width="60%" />
             </Box>
-          )}
+
+          )} */
+         
+          <Card img={item.src} title={item.title} description={item.channel} price={item.views}/>
+          }
         </Box>
       ))}
     </Grid>
@@ -77,7 +89,7 @@ Media.propTypes = {
 export default function YouTube() {
   return (
     <Box sx={{ overflow: 'hidden' }}>
-      <Media loading />
+      {/* <Media loading /> */}
       <Media />
     </Box>
   );

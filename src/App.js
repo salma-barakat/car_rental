@@ -6,6 +6,7 @@ import  ContactUs from "./pages/ContactUs"
 import  Help from "./pages/Help"
 import  SignUp from "./pages/SignUp"
 import  LogIn from "./pages/LogIn"
+import  CarInfo from "./pages/CarInfo"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/Help" element={<Help/>}/>
           <Route exact path="/Log-In" element={<LogIn/>}/>
           <Route exact path="/Sign-Up" element={<SignUp/>}/>
+          <Route exact path="/car/:id" element={<CarInfo/>}/>
         </Routes>
     </div>
   );

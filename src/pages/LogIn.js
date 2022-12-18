@@ -14,11 +14,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../carImgLogg.jpg"
+import { useNavigate } from "react-router-dom"; 
+
 const backgroundImage = img
 
 const theme = createTheme();
 
 export default function LogIn() {
+  const history = useNavigate();
     const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -101,7 +104,7 @@ export default function LogIn() {
                       Forgot password?
                     </Link>
                   </Grid>
-                  <Grid item>
+                  <Grid item  onClick={history("/Sign-Up")}>
                     <Link href="#" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
