@@ -14,7 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../carImgLogg.jpg"
-import { useNavigate } from "react-router-dom"; 
+import { redirect, useNavigate } from "react-router-dom"; 
 
 const backgroundImage = img
 
@@ -30,7 +30,11 @@ export default function LogIn() {
         password: data.get('password'),
       });
     };
-  
+  const redirectFun= () =>{
+    // check backend if info is right 
+    // check user or admin
+    // redirect
+  }
     return (
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '100vh' }}>
@@ -95,6 +99,7 @@ export default function LogIn() {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
+                  onClick={redirectFun}
                 >
                   Log In
                 </Button>

@@ -1,23 +1,21 @@
  const data = [
     {
-        id:1,
+      id:1,
       src: 'https://cdn.motor1.com/images/mgl/PO9Y4/s3/fiat-363-suvfiat.webp',
       title: 'Fiat',
       description: 'It is a very nice SUV Car',
       price: '90$',
       status:"Out of Service"
-    //   createdAt: 'a week ago',
     },
     {
-        id:2,
+      id:2,
       src: 'https://images.unsplash.com/photo-1578656415093-e7e19e5e132b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGxhbWJvcmdoaW5pfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
       title: 'Lamborghini',
       description: 'Luxurious car',
       price: '190$',
       status:"Avaliable"
-    //   createdAt: '3 years ago',
     },
-    {id:3,
+    { id:3,
       src: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
       title: 'Porsche',
       description: 'wonderFul car',
