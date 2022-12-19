@@ -6,13 +6,12 @@ INSERT INTO car(plate_id,make,model,`year`,description,price,car_status,is_avail
 INSERT INTO car(plate_id,make,model,`year`,description,price,car_status,is_available,color,origin,engin_capacity,img) VALUES (921,'Hyundai','Elantra',2013, 'Practical car for work and duty',50000,'Available for rent','Available','Burgandy','South Korea','1493 CC','https://tdrresearch.azureedge.net/photos/chrome/Expanded/White/2013HYU003a/2013HYU003a01.jpg');
 INSERT INTO car(plate_id,make,model,`year`,description,price,car_status,is_available,color,origin,engin_capacity,img) VALUES (6606,'Chevrolet','Optra',2015, '',150000,'rented','Available','Blue','U.S','1500 CC','https://www.chevroletarabia.com/content/dam/chevrolet/middle-east/egypt/english/index/cars/2019-optra/colorizer/01-images/01-images/2018-Optra-Persian-Blue.jpg?imwidth=600');
 
-
-INSERT INTO `user`(fname,lname,email,phone,is_admin) VALUES ('Rowan','Samy','rowansamy1@gmail.com','01062888126',true);
-INSERT INTO `user`(fname,lname,email,phone) VALUES ('Youmna','Ahmed','youmnaahmed2@gmail.com','01148710934');
-INSERT INTO `user`(fname,lname,email,phone) VALUES ('Nourhan','Mohamed','nourhanmohamed3@gmail.com','015095672891');
-INSERT INTO `user`(fname,lname,email,phone) VALUES ('Salma','Barakat','salmabarakat4@gmail.com','01056830916792');
-INSERT INTO `user`(fname,lname,email,phone) VALUES ('Nada','Said','nadasaid5@gmail.com','01236782099');
-INSERT INTO `user`(fname,lname,email,phone) VALUES ('Mariam','Salama','mariamsalama6@gmail.com','01568936009');
+INSERT INTO `user`(fname,lname,email,password,phone,is_admin) VALUES ('Rowan','Samy','rowansamy1@gmail.com',PASSWORD("rowan11"),'01062888126',true);
+INSERT INTO `user`(fname,lname,email,password,phone) VALUES ('Youmna','Ahmed','youmnaahmed2@gmail.com',PASSWORD("youmna22"),'01148710934');
+INSERT INTO `user`(fname,lname,email,password,phone) VALUES ('Nourhan','Mohamed','nourhanmohamed3@gmail.com',PASSWORD("nourhan33"),'015095672891');
+INSERT INTO `user`(fname,lname,email,password,phone) VALUES ('Salma','Barakat','salmabarakat4@gmail.com',PASSWORD("salma44"),'01056830916792');
+INSERT INTO `user`(fname,lname,email,password,phone) VALUES ('Nada','Said','nadasaid5@gmail.com',PASSWORD("nada55"),'01236782099');
+INSERT INTO `user`(fname,lname,email,password,phone) VALUES ('Mariam','Salama','mariamsalama6@gmail.com',PASSWORD("mariam66"),'01568936009');
 
 
 INSERT INTO reservation (plate_id,email,payment,time_reservation,pickup_time,return_time,is_paid) VALUES (456,'nadasaid5@gmail.com',NULL,'2022-03-03 01:20:40','2022-03-10 10:20:40','2022-04-10 11:00:30',false);

@@ -23,6 +23,7 @@ CREATE TABLE car(
 CREATE TABLE `user`(
 	fname varchar(50) not null,
 	lname varchar(50) not null,
+    password varchar(50) not null,
     email varchar(50) not null,
     phone varchar(15) not null,
     is_admin boolean not null DEFAULT false,
