@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+var cors = require('cors')
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
