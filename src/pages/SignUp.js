@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import img from "../carSign.jpg"
+import img from "../imgSign.jpg"
 import { useNavigate } from "react-router-dom"; 
 const backgroundImage = img
 
@@ -33,7 +33,7 @@ export default function SignUp() {
   
     const myStyle={
     backgroundImage: `url(${backgroundImage})`,
-    height:'100vh',
+    height:'120vh',
     marginTop:'-70px',
     fontSize:'50px',
     backgroundSize: 'cover',
@@ -103,6 +103,16 @@ export default function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="phoneNo"
+                    label="Phone Number"
+                    name="phoneNo"
+                    autoComplete="phoneNo"
+                  />
+                </Grid>
+                <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox value="allowExtraEmails" color="primary" />}
                     label="I want to receive inspiration, marketing promotions and updates via email."
@@ -120,7 +130,7 @@ export default function SignUp() {
               <Grid container>
                 <Grid item onClick={history("/Log-In")} >
                   <Link href="#" variant="body2">
-                  <span style={{fontWeight: 'bold', fontSize: '20' }}>Already have an account? Sign in</span>
+                  <span style={{fontWeight: 'bold', fontSize: '20'}}>Already have an account? Sign in</span>
                   </Link>
                 </Grid>
               </Grid>
