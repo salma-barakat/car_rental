@@ -8,12 +8,10 @@ import Card from "./Card"
 import { useNavigate } from "react-router-dom"; 
 import {getCar} from "../servies"
 // import {useState,useEffect} from "react";
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import axios from 'axios';
 // const [users, setUsers] = useState([]);
-//     useEffect(() => {
-//         getUsers();
-//     }, []);
+//     
     // function getUsers() {
     //     axios.get('http://localhost:8888/api/users/').then(function(response) {
     //         console.log(response.data);
@@ -30,38 +28,27 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function ResponsiveGrid() {
-  axios({
-    method: 'GET',
-    url: 'http://localhost/index.php/',
-    data: {},
-    config: { headers: {'Content-Type': 'multipart/form-data' }}
-})
-.then(function (response) {
-    //handle success
-    console.log(response)
-    alert('New User Successfully Added.');  
-})
-.catch(function (response) {
-    //handle error
-    console.log(response)
-});
-// const [data,setData]=useState({});
-// React.useEffect(()=>{
-// setData(getCar)
-// console.log(data)
-// },[])
+  const [car , setcar]= useState([]);
+
+
+  useEffect(() => {
+  axios.get('http://localhost:80/final%20project/car_rental/php/index.php').then(function(response) {
+            console.log(response.data);
+            setcar(response.data);
+        });
+      },[]);    
     const history = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-      {/* {
-      data.map((item, index) => (
+      {
+      car!=[]&& car.map((item, index) => (
           <Grid xs={2} sm={4} md={3} key={index}>
             <Item  onClick={e=>history("/car/:"+item.id)} >
-            <Card img={item.src} title={item.title} description={item.description} price={item.price} status={item.status}/>
+            <Card img={item.img} model={item.model} title={item.make} description={item.description} price={item.price} status={item.car_status} year={item.year}/>
             </Item>
           </Grid>
-        ))} */}
+        ))}
       </Grid>
     </Box>
   );

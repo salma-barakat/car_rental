@@ -8,9 +8,10 @@ import Typography from '@mui/material/Typography';
 
 
 export default function MediaCard(
-    {title,description, img,price,status}
+    {title,model,description, img,price,status,year}
 ) {
-
+  var nf = Intl.NumberFormat();
+ 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -21,10 +22,11 @@ export default function MediaCard(
       />
       <CardContent>
         <Typography gutterBottom variant="h5" >
-          {title}
+          {title}<span> </span>{model}<span> , </span>{year}
         </Typography>
         <Typography gutterBottom variant="h5" >
-          {price}
+       {/* {x} */}
+          {nf.format(price)}<span> L.E</span> 
         </Typography>
         <Typography variant="body2" color="text.secondary">
         {description}
