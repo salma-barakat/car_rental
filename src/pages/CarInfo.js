@@ -7,31 +7,80 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/system';
-import { Grid } from '@mui/material';
-import img from "../carImgLogg.jpg"
-// import { useNavigate } from "react-router-dom"; 
-
-const backgroundImage = img
-
-function createData(prop, ava) {
-  return { prop, ava };
-}
-
-const rows = [
-  createData('Make',"BMW"),
-  createData('Year',"2022"),
-  createData('plateID',"123456"),
-  createData('status',"out of Service")
-];
-
+import CardMedia from '@mui/material/CardMedia';
+import axios from 'axios';
+import { useEffect,useState } from 'react';
+import { useNavigate ,useParams} from "react-router-dom"; 
+import Button from '@mui/material/Button';
 
 export default function DenseTable() {
+  const history = useNavigate();
+  const {id} = useParams();
+  const {Userid} = useParams();
+  const [data,setData]=useState({});
+  const [row,setRow]=useState([]);
+  const[img,setImg]=useState("");
+  const[make,setMake]=useState("")
+  const[price,setPrice]=useState("")
+  const[model,setModel]=useState("")
+  console.log(id);
+   const buttonNavig=()=>{
+if(Userid){
+  // form
+}
+else{
+  history("/Log-In");
+}
+
+  }
+  useEffect(() => {
+    setData({});
+    setRow([]);
+    console.log("herereeeeeeeeeeeeeeeeeeee")
+    axios({
+      method: 'GET',
+      url: `http://localhost:80/final%20project/car_rental/api/${id}`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      console.log(response)
+      setData(response.data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  },[]);
+  useEffect(()=>{
+    for (var key in data) {
+      if (key!="img"){
+        if(key=="make"){
+          setMake(data[key])
+        }
+        if(key=="price"){
+          setPrice(data[key])
+        }
+        if(key=="model"){
+          setModel(data[key])
+        }
+     let x={prop:key,ava:data[key]}
+      console.log( {prop:key,ava:data[key]});
+      setRow(c=>[...c, x])
+      }
+      else setImg(data[key]);
+    }
+  },[data])
+  // console.log(info);
+  console.log(row);
   return (
     <Container>
-        <h1>title.price</h1>
-        
-        <img src={img} height="500px"></img>
-         
+        <h3><span>{make} </span>{model} <span></span><span>{price} </span></h3>
+        <CardMedia
+        sx={{height:{md:'500px',xs:"auto"}}}
+        component="img"
+        image={img}
+      />
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 300 }} size="small" aria-label="a dense table">
         <TableHead>
@@ -42,7 +91,7 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row,index) => (
+          {row && row.map((row,index) => (
             <TableRow
               key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -54,6 +103,9 @@ export default function DenseTable() {
         </TableBody>
       </Table>
     </TableContainer>
+    <Button variant="contained" onClick={buttonNavig} >
+     { (Userid) ? "Reserve":"LogIn first"}
+    </Button>
         </Container>
   );
 }

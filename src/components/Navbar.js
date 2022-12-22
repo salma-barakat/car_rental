@@ -16,9 +16,9 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 // import { useHistory } from "react-router-dom";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate,useParams } from "react-router-dom"; 
 
-const pages = ['Home', 'ContactUs', 'Help','Sign-Up','Log-In'];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -26,10 +26,12 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   
   const history = useNavigate();
+  const{Userid}=useParams();
   const menuClicked= even =>{
     console.log(even)
     history("/"+even);
   }
+  const pages = Userid?['Home', 'ContactUs', 'Help']:['Home', 'ContactUs', 'Help','Sign-Up','Log-In'];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

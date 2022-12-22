@@ -32,19 +32,30 @@ export default function ResponsiveGrid() {
 
 
   useEffect(() => {
-  axios.get('http://localhost:80/final%20project/car_rental/php/index.php').then(function(response) {
-            console.log(response.data);
-            setcar(response.data);
-        });
-      },[]);    
-    const history = useNavigate();
+    axios({
+      method: 'GET',
+      url: 'http://localhost:80/final%20project/car_rental/api/',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      console.log(response)
+      setcar(response.data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  },[]);
+const history = useNavigate();
+console.log(history)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
       {
       car!=[]&& car.map((item, index) => (
           <Grid xs={2} sm={4} md={3} key={index}>
-            <Item  onClick={e=>history("/car/:"+item.id)} >
+            <Item  onClick={e=>history(window.location.pathname+"/car/"+item.plate_id)} >
             <Card img={item.img} model={item.model} title={item.make} description={item.description} price={item.price} status={item.car_status} year={item.year}/>
             </Item>
           </Grid>
