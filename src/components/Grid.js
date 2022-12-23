@@ -27,35 +27,38 @@ const Item = styled(Paper)(({ theme }) => ({
   cursor:"pointer"
 }));
 
-export default function ResponsiveGrid() {
+export default  function ResponsiveGrid({data}) {
+  console.log(data)
   const [car , setcar]= useState([]);
 
 
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: 'http://localhost:80/final%20project/car_rental/api/',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => {
-      console.log(response)
-      setcar(response.data);
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  },[]);
+    // axios({
+    //   method: 'GET',
+    //   url: 'http://localhost:80/final%20project/car_rental/api/',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+    // .then((response) => {
+    //   console.log(response)
+      setcar(data);
+    // })
+    // .catch((error) => {
+    //   console.log(error)
+    // })
+  },[data]);
+
 const history = useNavigate();
-console.log(history)
+
+console.log(window.location.pathname)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
       {
       car!=[]&& car.map((item, index) => (
           <Grid xs={2} sm={4} md={3} key={index}>
-            <Item  onClick={e=>history(window.location.pathname+"/car/"+item.plate_id)} >
+            <Item  onClick={e=>history((window.location.pathname!='/'?window.location.pathname:'')+"/car/"+item.plate_id)} >
             <Card img={item.img} model={item.model} title={item.make} description={item.description} price={item.price} status={item.car_status} year={item.year}/>
             </Item>
           </Grid>
