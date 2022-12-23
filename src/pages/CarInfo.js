@@ -27,6 +27,7 @@ export default function DenseTable() {
    const buttonNavig=()=>{
 if(Userid){
   // form
+  history(window.location.pathname+"/reserve");
 }
 else{
   history("/Log-In");
@@ -36,7 +37,7 @@ else{
   useEffect(() => {
     setData({});
     setRow([]);
-    console.log("herereeeeeeeeeeeeeeeeeeee")
+    // console.log("herereeeeeeeeeeeeeeeeeeee")
     axios({
       method: 'GET',
       url: `http://localhost:80/final%20project/car_rental/api/${id}`,

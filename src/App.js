@@ -8,7 +8,7 @@ import  SignUp from "./pages/SignUp"
 import  LogIn from "./pages/LogIn"
 import  CarInfo from "./pages/CarInfo"
 import  LoginHome from "./pages/LoginHome"
-import  ReserveCarInfo from "./pages/ReserveCarInfo"
+import ReserveForm from "./pages/ReserveForm"
 
 function App() {
   return (
@@ -26,7 +26,8 @@ function App() {
           <Route exact path="/car/:id" element={<CarInfo/>}/>
           <Route exact path="/user/:Userid/car/:id" element={<CarInfo/>}/>
           <Route exact path="/user/:Userid" element={<LoginHome />}/>
-          <Route exact path="/reserve" element={<ReserveCarInfo />}/>
+          {/* <Route exact path="/reserve" element={<ReserveCarInfo />}/> */}
+          <Route exact path="/user/:Userid/car/:id/reserve" element={<ReserveForm />}/>
         </Routes>
     </div>
   );
