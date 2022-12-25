@@ -18,12 +18,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
 // import BasicModal from '../components/Modal'
 // import * as React from 'react';
 // import Box from '@mui/material/Box';
 // import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import {url} from '../conf';
 // import { useNavigate } from "react-router-dom"; 
 
 const style = {
@@ -49,7 +51,7 @@ const ReserveForm = () => {
   useEffect(() => {
     axios({
       method: 'GET',
-      url: `http://localhost:80/api/${id}`,
+      url: url+`api/${id}`,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -71,7 +73,7 @@ const ReserveForm = () => {
     const formData = {
       pickDate, returnDate
     }
-    await axios.post(`http://localhost:80/api/reserve/${Userid}/${id}`, formData, { headers })
+    await axios.post(url+`/api/reserve/${Userid}/${id}`, formData, { headers })
       .then(res => {
         console.log(res.data)
         setOpen(true);

@@ -18,6 +18,9 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Modal from '@mui/material/Modal';
 import { useState,useEffect } from 'react';
+import {url} from '../conf';
+
+
 // import { useNavigate } from "react-router-dom"; 
 
 const style = {
@@ -54,7 +57,7 @@ export default function SignUp() {
       setModalMsg("Enter all required data.");
       setModalMsg({title:'Error' , msg:'Enter all required data.'});
     }  else{
-    await axios.post('http://localhost:80/api/user.php/New',formData,{headers})
+    await axios.post(url+'api/user.php/New',formData,{headers})
     .then(res=>{
       if(res.data.status==0){
       setOpenModal(true);

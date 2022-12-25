@@ -18,7 +18,7 @@ import { redirect, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Modal from '@mui/material/Modal';
 // import { useNavigate } from "react-router-dom"; 
-
+import {url} from '../conf';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -69,14 +69,17 @@ export default function LogIn() {
       setModalMsg("Enter your password");
     }
     else {
-      await axios.post('http://localhost:80/api/user.php', formData, { headers })
+      await axios.post(url+'api/user.php', formData, { headers })
         .then(res => {
           if (res.data.status == 0) {
             setOpenModal(true);
             setModalMsg("Incorect Email or password");
-          } else if (res.data.status == 1) {
+          } else if (res.data.status == 1 && res.data.isAdmin=="0") {
             history("/user/" + res.data.message)
           }
+         else if (res.data.status == 1 && res.data.isAdmin=='1') {
+          history("/admin")
+        }
           console.log(res.data)
           // if (Array.isArray(res.data))
           // setData(res.data);}

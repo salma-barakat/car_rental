@@ -33,20 +33,7 @@ export default  function ResponsiveGrid({data}) {
 
 
   useEffect(() => {
-    // axios({
-    //   method: 'GET',
-    //   url: 'http://localhost:80/api/',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    // .then((response) => {
-    //   console.log(response)
       setcar(data);
-    // })
-    // .catch((error) => {
-    //   console.log(error)
-    // })
   },[data]);
 
 const history = useNavigate();

@@ -10,6 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {url} from '../conf';
 
 export default function FormPropsTextFields() {
   const [data, setData] = useState([]);
@@ -25,7 +26,7 @@ export default function FormPropsTextFields() {
   const formData={
    ...inputs
   }
-  await axios.post('http://localhost:80/api/',formData,{headers})
+  await axios.post(url+'api/',formData,{headers})
   .then(res=>{console.log(res.data)
     if (Array.isArray(res.data))
   setData(res.data);}

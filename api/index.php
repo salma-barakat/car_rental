@@ -14,8 +14,8 @@ switch ($method) {
     case "GET":
         $sql = "SELECT * FROM car";
         $path = explode('/', $_SERVER['REQUEST_URI']);
-        // echo "$path[4]";
-        if (isset($path[4]) && is_numeric($path[2])) {
+        // echo "$path[2]";
+        if (isset($path[2]) && is_numeric($path[2])) {
             $sql .= " WHERE plate_id = $path[2]";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $path[2]);

@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useEffect,useState } from 'react';
 import { useNavigate ,useParams} from "react-router-dom"; 
 import Button from '@mui/material/Button';
-
+import {url} from '../conf';
 export default function DenseTable() {
   const history = useNavigate();
   const {id} = useParams();
@@ -40,7 +40,7 @@ else{
     // console.log("herereeeeeeeeeeeeeeeeeeee")
     axios({
       method: 'GET',
-      url: `http://localhost:80/api/${id}`,
+      url: url+`api/${id}`,
       headers: {
         'Content-Type': 'application/json',
       },

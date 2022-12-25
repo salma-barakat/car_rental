@@ -6,12 +6,14 @@ import Container from '@mui/material/Container';
 import Grid from "../components/Grid";
 import axios from "axios";
 import {useEffect } from "react";
+import {url} from '../conf';
+
 function App() {
   const [data,setData]=useState([]);
   useEffect(() => {
     axios({
       method: 'GET',
-      url: 'http://localhost:80/api/',
+      url: url+'api/',
       headers: {
         'Content-Type': 'application/json',
       },
