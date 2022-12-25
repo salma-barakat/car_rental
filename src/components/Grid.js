@@ -27,7 +27,8 @@ const Item = styled(Paper)(({ theme }) => ({
   cursor:"pointer"
 }));
 
-export default function ResponsiveGrid() {
+export default  function ResponsiveGrid({data}) {
+  console.log(data)
   const [car , setcar]= useState([]);
 
 
@@ -44,7 +45,7 @@ export default function ResponsiveGrid() {
       {
       car!=[]&& car.map((item, index) => (
           <Grid xs={2} sm={4} md={3} key={index}>
-            <Item  onClick={e=>history("/car/:"+item.id)} >
+            <Item  onClick={e=>history((window.location.pathname!='/'?window.location.pathname:'')+"/car/"+item.plate_id)} >
             <Card img={item.img} model={item.model} title={item.make} description={item.description} price={item.price} status={item.car_status} year={item.year}/>
             </Item>
           </Grid>

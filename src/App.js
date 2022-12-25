@@ -9,6 +9,9 @@ import  LogIn from "./pages/LogIn"
 import  CarInfo from "./pages/CarInfo"
 import AdminPage from "./pages/AdminPage"
 import Reports from "./pages/Reports"
+import  LoginHome from "./pages/LoginHome"
+import ReserveForm from "./pages/ReserveForm"
+
 function App() {
   return (
     <div className="App">
@@ -25,6 +28,10 @@ function App() {
           <Route exact path="/car/:id" element={<CarInfo/>}/>
           <Route exact path="/admin" element={<AdminPage/>}/>
           <Route exact path="/reports" element={<Reports/>}/>
+          <Route exact path="/user/:Userid/car/:id" element={<CarInfo/>}/>
+          <Route exact path="/user/:Userid" element={<LoginHome />}/>
+          {/* <Route exact path="/reserve" element={<ReserveCarInfo />}/> */}
+          <Route exact path="/user/:Userid/car/:id/reserve" element={<ReserveForm />}/>
         </Routes>
     </div>
   );

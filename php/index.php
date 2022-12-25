@@ -1,6 +1,10 @@
 
 
 <?php
+header('Access-Control-Allow-Origin: *',true); //add this CORS header to enable any domain to send HTTP requests to these endpoints:
+header('Access-Control-ALLow-Methods: POST, GET,OPTIONS, PUT, DELETE');
+header('Access-Control-AlLow-Headers: Content-Type, X-Auth-Token, Origin, Authorization');
+header('Content-Type: application/json');
 // echo "Hi";
 $host = "localhost"; 
 $user = "root"; 
@@ -8,22 +12,22 @@ $password = "";
 $dbname = "Car_Rental_System"; 
  
 $con = mysqli_connect($host, $user, $password,$dbname);
- 
 // $method = $_SERVER['REQUEST_METHOD'];
- $method="GET";
+// echo $method;
+print_r($_SERVER['REQUEST_METHOD']);
+ $method="POST";
 if (!$con) {
   die("Connection failed: " . mysqli_connect_error());
 }
- 
 switch ($method) {
-    case 'GET':    
-        
-        // $firstName = $_POST["firstName"];
-        // $lastName = $_POST["lastName"];
-        // $email = $_POST["email"];
-        // $password = $_POST["password"];
+    case 'POST':    
         $sql = "Select * from car"; 
+        $data = json_decode(file_get_contents("php://input"), TRUE);
+        // $id = $data['id'];
+        print_r( $data['form']);
+
     break;
+
 }
  $id="";
 // run SQL statement

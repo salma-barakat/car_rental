@@ -11,7 +11,6 @@ export default function MediaCard(
     {title,model,description, img,price,status,year}
 ) {
   var nf = Intl.NumberFormat();
- 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia

@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import img from "../carImg2.jpg"
 import HeaderImg from "./HeaderImg"
-import Skeleton from "./Skeleton"
 import Container from '@mui/material/Container';
 import Grid from "../components/Grid";
+import axios from "axios";
+import {useEffect } from "react";
 function App() {
+  const [data,setData]=useState([]);
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:80/final%20project/car_rental/api/',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => {
+      console.log(response.data)
+      setData(response.data)
+      
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  },[]);
+  
   return (
     <>
     {/* // <div className="App"> */}
@@ -16,7 +35,7 @@ function App() {
       <HeaderImg />
       <Container>
         <h1>Some of our cars</h1>
-        <Grid />
+        <Grid data={data}/>
       </Container>
       {/* <Container> */}
         <Footer />
