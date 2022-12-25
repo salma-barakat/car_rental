@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     axios({
       method: 'GET',
-      url: 'http://localhost:80/final%20project/car_rental/api/',
+      url: 'http://localhost:80/api/',
       headers: {
         'Content-Type': 'application/json',
       },

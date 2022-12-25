@@ -25,7 +25,7 @@ export default function FormPropsTextFields() {
   const formData={
    ...inputs
   }
-  await axios.post('http://localhost:80/final%20project/car_rental/api/',formData,{headers})
+  await axios.post('http://localhost:80/api/',formData,{headers})
   .then(res=>{console.log(res.data)
     if (Array.isArray(res.data))
   setData(res.data);}
@@ -35,25 +35,7 @@ export default function FormPropsTextFields() {
   });
 }
   useEffect(() => {
-//     if(typeof data == 'undefined' || data.length === 0  ){
-//       console.log("jk hereeee")
-//       axios({
-//         method: 'GET',
-//         url: 'http://localhost:80/final%20project/car_rental/api/',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       })
-//       .then((response) => {
-//         console.log(response.data)
-//         setData(response.data)
-        
-//       })
-//       .catch((error) => {
-//         console.log(error)
-//       })
-//     }
-// else
+
     submit()
   },[inputs]);
 

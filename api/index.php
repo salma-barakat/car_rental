@@ -15,10 +15,10 @@ switch ($method) {
         $sql = "SELECT * FROM car";
         $path = explode('/', $_SERVER['REQUEST_URI']);
         // echo "$path[4]";
-        if (isset($path[4]) && is_numeric($path[4])) {
-            $sql .= " WHERE plate_id = $path[4]";
+        if (isset($path[4]) && is_numeric($path[2])) {
+            $sql .= " WHERE plate_id = $path[2]";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $path[4]);
+            $stmt->bindParam(':id', $path[2]);
             $stmt->execute();
             $cars = $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
@@ -32,7 +32,7 @@ switch ($method) {
 
     case "POST":
         $path = explode('/', $_SERVER['REQUEST_URI']);
-        if ($path[4] != 'reserve') {
+        if (count ($path)<4 || $path[4] != 'reserve') {
             // echo 'postt '.$path[4];
             // select * from reservation where `plate_id`='901' and `return_time`> "2019-09-24 18:35:01" 
             $user = new class
@@ -128,8 +128,8 @@ switch ($method) {
             }
             echo json_encode($cars);
         } else {
-            $UserId = $path[5];
-            $CarId = $path[6];
+            $UserId = $path[3];
+            $CarId = $path[4];
 
             $user = json_decode(file_get_contents('php://input'));
 

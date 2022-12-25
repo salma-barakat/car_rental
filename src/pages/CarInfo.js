@@ -40,7 +40,7 @@ else{
     // console.log("herereeeeeeeeeeeeeeeeeeee")
     axios({
       method: 'GET',
-      url: `http://localhost:80/final%20project/car_rental/api/${id}`,
+      url: `http://localhost:80/api/${id}`,
       headers: {
         'Content-Type': 'application/json',
       },

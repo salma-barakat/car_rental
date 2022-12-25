@@ -49,7 +49,7 @@ const ReserveForm = () => {
   useEffect(() => {
     axios({
       method: 'GET',
-      url: `http://localhost:80/final%20project/car_rental/api/${id}`,
+      url: `http://localhost:80/api/${id}`,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -71,7 +71,7 @@ const ReserveForm = () => {
     const formData = {
       pickDate, returnDate
     }
-    await axios.post(`http://localhost:80/final%20project/car_rental/api/reserve/${Userid}/${id}`, formData, { headers })
+    await axios.post(`http://localhost:80/api/reserve/${Userid}/${id}`, formData, { headers })
       .then(res => {
         console.log(res.data)
         setOpen(true);
