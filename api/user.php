@@ -39,7 +39,7 @@ switch ($method) {
             $user = json_decode(file_get_contents('php://input'));
             $sql = 'select * from user where email = :email ';
             $stmt = $conn->prepare($sql);
-            echo $user->email;
+            //echo $user->email;
             $stmt->bindParam(':email', $user->email);
             // $stmt->bindParam(':password', $user->password);
             if ($stmt->execute()) {
