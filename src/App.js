@@ -7,7 +7,8 @@ import  Help from "./pages/Help"
 import  SignUp from "./pages/SignUp"
 import  LogIn from "./pages/LogIn"
 import  CarInfo from "./pages/CarInfo"
-
+import AdminPage from "./pages/AdminPage"
+import Reports from "./pages/Reports"
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,8 @@ function App() {
           <Route exact path="/Log-InAdmin" element={<LogIn/>}/>
           <Route exact path="/Sign-Up" element={<SignUp/>}/>
           <Route exact path="/car/:id" element={<CarInfo/>}/>
+          <Route exact path="/admin" element={<AdminPage/>}/>
+          <Route exact path="/reports" element={<Reports/>}/>
         </Routes>
     </div>
   );

@@ -32,7 +32,7 @@ export default function ResponsiveGrid() {
 
 
   useEffect(() => {
-  axios.get('http://localhost:80/final%20project/car_rental/php/index.php').then(function(response) {
+  axios.get('http://localhost/php/index.php').then(function(response) {
             console.log(response.data);
             setcar(response.data);
         });
