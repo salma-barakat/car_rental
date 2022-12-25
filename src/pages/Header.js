@@ -31,7 +31,7 @@ function ResponsiveAppBar() {
     console.log(even)
     history("/"+even);
   }
-  const pages = Userid?['addCar', 'reports']:['add new car', 'view reports'];
+  const pages = Userid?['addCar', 'reports', 'viewAndEdit']:['add new car', 'view reports', 'View or edit cars'];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

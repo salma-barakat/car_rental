@@ -9,7 +9,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -20,6 +19,19 @@ import { useState,useEffect } from 'react';
 import {url} from '../conf';
 import Header from "../pages/Header";
 import img from "../adminImg.jpg"
+import BorderColorSharpIcon from '@mui/icons-material/BorderColorSharp';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 
 
 // import { useNavigate } from "react-router-dom"; 
@@ -79,6 +91,37 @@ console.log(inputs)
               Welcome Admin</h1>
             </Typography>
           </Box>
+          <div style={{alignItems: 'justify'}}>
+          <Stack direction="row" spacing={3}>
+          <Button
+            variant="contained"
+            size="large"
+            href="/AddCar"
+            sx={{ minWidth: 200 }}
+          >
+            Add a new car
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            href="/viewAndEdit"
+            sx={{ minWidth: 250 }}
+          >
+            View or edit a car
+          </Button>
+
+          <Button
+            variant="contained"
+            size="large"
+            href="/Reports"
+            sx={{ minWidth: 200 }}
+          >
+            View Reports
+          </Button>
+
+        </Stack>
+        </div>
+
         </Container>
       </ThemeProvider>
       </div>

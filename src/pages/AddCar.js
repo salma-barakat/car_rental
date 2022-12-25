@@ -11,13 +11,17 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../collectionCars.jpg"
 import { redirect, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Modal from '@mui/material/Modal';
+import Header from "../pages/Header";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 // import { useNavigate } from "react-router-dom"; 
 import {url} from '../conf';
 const style = {
@@ -50,6 +54,7 @@ export default function LogIn() {
   const [redirect, setRedirect] = useState({stat:false,msg:''});
   const [openModal, setOpenModal] = React.useState(false);
   const [modalMsg, setModalMsg] = React.useState('');
+  const [select,setSelect] = useState('');
   const handleSubmit = async (event) => {
     event.preventDefault();
     const headers={'Access-control-Allow-Origin':'*'}
@@ -92,6 +97,9 @@ console.log(inputs)
 
   // }
   return (
+    <>
+    {/* // <div className="App"> */}
+    <Header />
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
@@ -174,13 +182,18 @@ console.log(inputs)
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="carStatus"
-                    label="Car Status"
-                    name="carStatus"
-                  />
+                <InputLabel id="demo-simple-select-label">Car Status</InputLabel>
+                <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={select}
+                label="Car Status"
+                onChange={e=>{setInputs({ ...inputs, car_status: e.target.value });setSelect(e.target.value)}} 
+                >
+              <MenuItem value={'Availbale for rent'}>Availbale for rent</MenuItem>
+              <MenuItem value={"Reserved"}>Reserved</MenuItem>
+              {/* <MenuItem value={30}>Thirty</MenuItem> */}
+            </Select>
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
@@ -207,19 +220,19 @@ console.log(inputs)
                   <TextField
                     required
                     fullWidth
-                    id="carLocation"
-                    label="Car Location"
-                    name="carLocation"
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
                     id="engineCapacity"
                     label="Capacity of Engine"
                     name="engineCapacity"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="carLocation"
+                    label="Car Location"
+                    name="carLocation"
                   />
                 </Grid>
 
@@ -275,5 +288,6 @@ console.log(inputs)
 
 
     </ThemeProvider>
+    </>
   );
 }

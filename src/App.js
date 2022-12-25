@@ -12,6 +12,7 @@ import Reports from "./pages/Reports"
 import  LoginHome from "./pages/LoginHome"
 import ReserveForm from "./pages/ReserveForm"
 import AddCar from "./pages/AddCar"
+import ViewAndEdit from "./pages/viewAndEdit"
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
           <Route exact path="/reports" element={<Reports/>}/>
           <Route exact path="/user/:Userid/car/:id" element={<CarInfo/>}/>
           <Route exact path="/user/:Userid" element={<LoginHome />}/>
-          <Route exact path="/admin/:addCar" element={<AddCar />}/>
+          <Route exact path="/admin/addCar" element={<AddCar />}/>
+          <Route exact path="/admin/viewAndEdit" element={<ViewAndEdit />}/>
           {/* <Route exact path="/reserve" element={<ReserveCarInfo />}/> */}
           <Route exact path="/user/:Userid/car/:id/reserve" element={<ReserveForm />}/>
         </Routes>
