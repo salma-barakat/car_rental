@@ -39,7 +39,7 @@ switch ($method) {
             $user = json_decode(file_get_contents('php://input'));
             $sql = 'select * from user where email = :email ';
             $stmt = $conn->prepare($sql);
-            // echo $user->email;
+            echo $user->email;
             $stmt->bindParam(':email', $user->email);
             // $stmt->bindParam(':password', $user->password);
             if ($stmt->execute()) {
@@ -51,7 +51,7 @@ switch ($method) {
                 }
                 else{
                 //   $sql=" INSERT INTO `user`(id,fname,lname,email,password,phone) VALUES (NULL,:firstname,:lastName,:email,:password,:phoneNo) ";
-                  $sql=" INSERT INTO `user`(fname , lname , email , `password` ,phone ) VALUES (:firstName , :lastName , :email , password(:password) ,:phoneNo) ";
+                  $sql=" INSERT INTO `user`(fname , lname , email , `password` ,phone ) VALUES (:firstName , :lastName , :email , MD5(:password) ,:phoneNo) ";
                     $stmt = $conn->prepare($sql);
                     // echo $user->email.'heeeee';
                     $stmt->bindParam(':firstName', $user->firstName);
@@ -82,9 +82,9 @@ switch ($method) {
         } }else {
             $user = json_decode(file_get_contents('php://input'));
 
-            $sql = 'select * from user where email = :email and password = password(:password) ';
+            $sql = "SELECT * from `user` WHERE email = :email and password = MD5 (:password) ";
             $stmt = $conn->prepare($sql);
-            // echo $user->email;
+            //echo $user->password;
             $stmt->bindParam(':email', $user->email);
             $stmt->bindParam(':password', $user->password);
             if ($stmt->execute()) {
