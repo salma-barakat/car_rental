@@ -92,12 +92,12 @@ console.log(inputs)
             </Typography>
           </Box>
           <div style={{alignItems: 'justify'}}>
-          <Stack direction="row" spacing={3}>
+          <Stack direction="column" spacing={3}>
           <Button
             variant="contained"
             size="large"
             href="/AddCar"
-            sx={{ minWidth: 200 }}
+            //sx={{ minWidth: 50 }}
           >
             Add a new car
           </Button>
@@ -105,7 +105,7 @@ console.log(inputs)
             variant="contained"
             size="large"
             href="/viewAndEdit"
-            sx={{ minWidth: 250 }}
+           // sx={{ minWidth: 250 }}
           >
             View or edit a car
           </Button>
@@ -114,7 +114,7 @@ console.log(inputs)
             variant="contained"
             size="large"
             href="/Reports"
-            sx={{ minWidth: 200 }}
+           // sx={{ minWidth: 200 }}
           >
             View Reports
           </Button>

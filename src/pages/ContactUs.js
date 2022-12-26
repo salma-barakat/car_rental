@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../carSign.jpg"
+import Navbar from "../components/Navbar"
 const backgroundImage = img
 
 const myStyle={
@@ -32,6 +33,9 @@ const contactStyle={
 
 function ContactUs() {
     return (
+      <>
+    {/* // <div className="App"> */}
+    <Navbar />
         <div style={myStyle}>
         <h2>ContactUs</h2>
         Our Email : <div style={contactStyle}> <Link href="#" variant="body2">
@@ -117,7 +121,7 @@ function ContactUs() {
             </Box>
 
       </div> 
-        
+       </> 
     )
  
 }
