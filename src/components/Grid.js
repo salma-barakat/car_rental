@@ -38,7 +38,7 @@ export default  function ResponsiveGrid({data}) {
 
 const history = useNavigate();
 
-console.log(window.location.pathname)
+// console.log(window.location.pathname)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={{ xs: 2, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>

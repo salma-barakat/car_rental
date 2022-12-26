@@ -14,6 +14,8 @@ import ReserveForm from "./pages/ReserveForm"
 import AddCar from "./pages/AddCar"
 import ViewAndEdit from "./pages/viewAndEdit"  
 import AdminSearch from "./pages/AdminSearch"  
+import EditCarHome from "./pages/EditCarHome" 
+import EditCarInfo from "./pages/EditCarInfo" 
 
 function App() {
   return (
@@ -32,12 +34,14 @@ function App() {
           <Route exact path="/admin" element={<AdminPage/>}/>
           <Route exact path="/reports" element={<Reports/>}/>
           <Route exact path="/user/:Userid/car/:id" element={<CarInfo/>}/>
+          <Route exact path="/admin/editcar/car/:id" element={<EditCarInfo/>}/>
           <Route exact path="/user/:Userid" element={<LoginHome />}/>
           <Route exact path="/admin/addCar" element={<AddCar />}/>
           <Route exact path="/admin/viewAndEdit" element={<ViewAndEdit />}/>
           {/* <Route exact path="/reserve" element={<ReserveCarInfo />}/> */}
           <Route exact path="/user/:Userid/car/:id/reserve" element={<ReserveForm />}/>
           <Route exact path="/admin/search" element={<AdminSearch />}/>
+          <Route exact path="/admin/editCar" element={<EditCarHome />}/>
         </Routes>
     </div>
   );

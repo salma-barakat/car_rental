@@ -40,42 +40,40 @@ const backgroundImage = img
 
 const theme = createTheme();
 
-export default function LogIn() {
+export default function AddCar() {
   const history = useNavigate();
-  // const handleSubmit = (event) => {
-
-
-
-  //   // const data = new FormData(event.currentTarget);
-
-  // };
   const handleClose = () => { setOpenModal(false); }
   const [inputs, setInputs] = useState([]);
-  const [redirect, setRedirect] = useState({stat:false,msg:''});
+  // const [redirect, setRedirect] = useState({stat:false,msg:''});
   const [openModal, setOpenModal] = React.useState(false);
-  const [modalMsg, setModalMsg] = React.useState('');
+  const [modalMsg, setModalMsg] = React.useState({});
   const [select,setSelect] = useState('');
+
   const handleSubmit = async (event) => {
+
     event.preventDefault();
     const headers={'Access-control-Allow-Origin':'*'}
     const formData={
       ...inputs
     }
-    if(!inputs.firstName || !inputs.lastName ||! inputs.email || !inputs.password|| !inputs.phoneNo){
+    if(!inputs.plate_id || !inputs.color ||! inputs.engineCapacity || !inputs.isAvailable|| !inputs.make ||
+      !inputs.model || !inputs.year ||! inputs.price || !inputs.imgURL|| !inputs.car_location ||
+      !inputs.carDescription || !inputs.car_status  ){
+      
       setOpenModal(true);
-      setModalMsg("Enter all required data.");
       setModalMsg({title:'Error' , msg:'Enter all required data.'});
+
     }  else{
-    await axios.post(url+'api/user.php/New',formData,{headers})
+    await axios.post(url+'api/admin.php/New',formData,{headers})
     .then(res=>{
+      console.log(res.data)
       if(res.data.status==0){
       setOpenModal(true);
       setModalMsg({title:'Error' , msg:'user registered before'});
       }else if(res.data.status==1){
         setOpenModal(true);
-      // setModalMsg(" registered successfully");
       setModalMsg({title:'Congrats',msg:'Registered successfully'});
-      setRedirect({stat:true,msg:res.data.msg});
+      // setRedirect({stat:true,msg:res.data.msg});
       
       console.log(res.data)
     }
@@ -92,9 +90,6 @@ console.log(inputs)
   //   // check backend if info is right 
   //   // check user or admin
   //   // redirect
-
-
-
   // }
   return (
     <>
@@ -140,6 +135,7 @@ console.log(inputs)
                     id="plate-id"
                     label="Plate-id"
                     autoFocus
+                    onChange={e=>{setInputs({ ...inputs, plate_id: e.target.value })}} 
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -149,6 +145,8 @@ console.log(inputs)
                     id="make"
                     label="Make"
                     name="make"
+                    onChange={e=>{setInputs({ ...inputs, make: e.target.value })}} 
+
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -158,6 +156,8 @@ console.log(inputs)
                     id="model"
                     label="Car Model"
                     name="model"
+                    onChange={e=>{setInputs({ ...inputs, model: e.target.value })}} 
+
                   />
                 </Grid>
 
@@ -168,6 +168,8 @@ console.log(inputs)
                     id="year"
                     label="Year"
                     name="year"
+                    onChange={e=>{setInputs({ ...inputs, year: e.target.value })}} 
+
                   />
                 </Grid>
 
@@ -178,6 +180,7 @@ console.log(inputs)
                     id="price"
                     label="Car Price"
                     name="price"
+                    onChange={e=>{setInputs({ ...inputs, price: e.target.value })}} 
                   />
                 </Grid>
 
@@ -203,6 +206,8 @@ console.log(inputs)
                     id="isAvailable"
                     label="Availabilty of Car"
                     name="isAvailable"
+                    onChange={e=>{setInputs({ ...inputs, isAvailable: e.target.value })}} 
+
                   />
                 </Grid>
 
@@ -213,6 +218,8 @@ console.log(inputs)
                     id="carColor"
                     label="Car Color"
                     name="carColor"
+                    onChange={e=>{setInputs({ ...inputs, color: e.target.value })}} 
+
                   />
                 </Grid>                
 
@@ -223,6 +230,8 @@ console.log(inputs)
                     id="engineCapacity"
                     label="Capacity of Engine"
                     name="engineCapacity"
+                    onChange={e=>{setInputs({ ...inputs, engineCapacity: e.target.value })}} 
+
                   />
                 </Grid>
 
@@ -233,6 +242,8 @@ console.log(inputs)
                     id="carLocation"
                     label="Car Location"
                     name="carLocation"
+                    onChange={e=>{setInputs({ ...inputs, car_location: e.target.value })}} 
+
                   />
                 </Grid>
 
@@ -243,6 +254,8 @@ console.log(inputs)
                     id="carDescription"
                     label="Car Description"
                     name="carDescription"
+                    onChange={e=>{setInputs({ ...inputs, carDescription: e.target.value })}} 
+
                   />
                 </Grid>
 
@@ -253,6 +266,7 @@ console.log(inputs)
                     id="imgURL"
                     label="Link of Car Image"
                     name="imgURL"
+                    onChange={e=>{setInputs({ ...inputs, imgURL: e.target.value })}} 
                   />
                 </Grid>
 
@@ -262,6 +276,7 @@ console.log(inputs)
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleSubmit} 
               >
                 Add Car
               </Button>
@@ -277,10 +292,10 @@ console.log(inputs)
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Error
+          {modalMsg.title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {modalMsg}
+            {modalMsg.msg}
           </Typography>
         </Box>
       </Modal>

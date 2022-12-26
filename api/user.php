@@ -12,23 +12,23 @@ $conn = $objDb->connect();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case "GET":
-        // $sql = "SELECT * FROM car";
-        // $path = explode('/', $_SERVER['REQUEST_URI']);
-        // // echo "$path[4]";
-        // if (isset($path[4]) && is_numeric($path[4])) {
-        //     $sql .= " WHERE plate_id = $path[4]";
-        //     $stmt = $conn->prepare($sql);
-        //     $stmt->bindParam(':id', $path[4]);
-        //     $stmt->execute();
-        //     $cars = $stmt->fetch(PDO::FETCH_ASSOC);
-        // } else {
-        //     $stmt = $conn->prepare($sql);
-        //     $stmt->execute();
-        //     $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // }
+        $sql = "SELECT * FROM car";
+        $path = explode('/', $_SERVER['REQUEST_URI']);
+        //echo $path[2];
+        if (isset($path[2]) && is_numeric($path[2])) {
+            $sql .= " WHERE plate_id = $path[2]";
+            $stmt = $conn->prepare($sql);
+            //   $stmt->bindParam(':id', $path[2]);
+            $stmt->execute();
+            $cars = $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 
-        // echo json_encode($cars);
-        // break;
+        echo json_encode($cars);
+        break;
 
     case "POST":
         $path = explode('/', $_SERVER['REQUEST_URI']);
