@@ -173,30 +173,27 @@ console.log(inputs)
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    id="price"
-                    label="Car Price"
-                    name="price"
-                    onChange={e=>{setInputs({ ...inputs, price: e.target.value })}} 
+                    id="carDescription"
+                    label="Car Description"
+                    name="carDescription"
+                    onChange={e=>{setInputs({ ...inputs, carDescription: e.target.value })}} 
+
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
-                <InputLabel id="demo-simple-select-label">Car Status</InputLabel>
-                <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={select}
-                label="Car Status"
-                onChange={e=>{setInputs({ ...inputs, car_status: e.target.value });setSelect(e.target.value)}} 
-                >
-              <MenuItem value={'Availbale for rent'}>Availbale for rent</MenuItem>
-              <MenuItem value={"Reserved"}>Reserved</MenuItem>
-              {/* <MenuItem value={30}>Thirty</MenuItem> */}
-            </Select>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="imgURL"
+                    label="Link of Car Image"
+                    name="imgURL"
+                    onChange={e=>{setInputs({ ...inputs, imgURL: e.target.value })}} 
+                  />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
@@ -235,7 +232,18 @@ console.log(inputs)
                   />
                 </Grid>
 
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="price"
+                    label="Car Price"
+                    name="price"
+                    onChange={e=>{setInputs({ ...inputs, price: e.target.value })}} 
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     fullWidth
@@ -247,27 +255,19 @@ console.log(inputs)
                   />
                 </Grid>
 
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="carDescription"
-                    label="Car Description"
-                    name="carDescription"
-                    onChange={e=>{setInputs({ ...inputs, carDescription: e.target.value })}} 
-
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="imgURL"
-                    label="Link of Car Image"
-                    name="imgURL"
-                    onChange={e=>{setInputs({ ...inputs, imgURL: e.target.value })}} 
-                  />
+                <Grid item xs={12} sm={6}>
+                <InputLabel id="demo-simple-select-label">Car Status</InputLabel>
+                <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={select}
+                label="Car Status"
+                onChange={e=>{setInputs({ ...inputs, car_status: e.target.value });setSelect(e.target.value)}} 
+                >
+              <MenuItem value={'Availbale for rent'}>Availbale for rent</MenuItem>
+              <MenuItem value={"Reserved"}>Reserved</MenuItem>
+              {/* <MenuItem value={30}>Thirty</MenuItem> */}
+            </Select>
                 </Grid>
 
               </Grid>
