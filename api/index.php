@@ -18,7 +18,7 @@ switch ($method) {
         if (isset($path[2]) && is_numeric($path[2])) {
             $sql .= " WHERE plate_id = $path[2]";
             $stmt = $conn->prepare($sql);
-         //   $stmt->bindParam(':id', $path[2]);
+            //   $stmt->bindParam(':id', $path[2]);
             $stmt->execute();
             $cars = $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
@@ -32,8 +32,11 @@ switch ($method) {
 
     case "POST":
         $path = explode('/', $_SERVER['REQUEST_URI']);
-        if (count ($path)<4 || $path[4] != 'reserve') {
-            // echo 'postt '.$path[4];
+        // echo count($path);
+        
+        if (count($path) < 4 || $path[3] != 'reserve') {
+
+            // echo 'postt '.$path[3];
             // select * from reservation where `plate_id`='901' and `return_time`> "2019-09-24 18:35:01" 
             $user = new class
             {
@@ -128,8 +131,10 @@ switch ($method) {
             }
             echo json_encode($cars);
         } else {
-            $UserId = $path[3];
-            $CarId = $path[4];
+            $UserId = $path[4];
+            $CarId = $path[5];
+            // echo $UserId;
+            // echo  $CarId ;
 
             $user = json_decode(file_get_contents('php://input'));
 
@@ -142,31 +147,40 @@ switch ($method) {
                 $row = $stmt->fetch();
                 if (!$row) { // here! as simple as that
                     // echo 'No data found';
-                    $date=date("Y-m-d",time());
-                    // echo $date;
-                    $sql = "INSERT INTO reservation (plate_id,user_id,payment,time_reservation,pickup_time,return_time,is_paid) VALUES 
-                    ($CarId,$UserId,NULL,'2022-12-23',:pickDate,:returnDate,false)";
+                    $sql = "Select * from `user` where user_id=$UserId ";
                     $stmt = $conn->prepare($sql);
-                    // echo $user->pickDate;
-                    $stmt->bindParam(':pickDate', $user->pickDate);
-                    $stmt->bindParam(':returnDate', $user->returnDate);
                     if ($stmt->execute()) {
-                        $response = ['status' => 1, 'message' => 'Record created successfully.'];
-                        // $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        // $response = ['status' => 1, 'message' => 'Record created successfully.'];
+                        $row = $stmt->fetch();
+                        if ($row) {
+                            $email = strVal($row['email']);
+                            // echo $email;
+                            $date = date("Y-m-d", time());
+                            // echo $date;
+                            $sql = "INSERT INTO reservation (plate_id,user_id,payment,time_reservation,pickup_time,return_time,is_paid,`email`) VALUES 
+                    ($CarId,$UserId,NULL,'2020-2-2',:pickDate,:returnDate,false,'$email')";
+                            $stmt = $conn->prepare($sql);
+                            // echo $user->pickDate;
+                            $stmt->bindParam(':pickDate', $user->pickDate);
+                            $stmt->bindParam(':returnDate', $user->returnDate);
+                            if ($stmt->execute()) {
+                                $response = ['status' => 1, 'message' => 'Record created successfully.'];
+                                // $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            } else {
+                                $response = ['status' => 0, 'message' => 'Failed to create record.'];
+                            }
+                            echo json_encode($response);
+                        }
                     } else {
-                        $response = ['status' => 0, 'message' => 'Failed to create record.'];
+                        $response = ['status' => 0, 'message' => 'Car will be rented in this period.'];
+                        echo json_encode($response);
                     }
+                } else {
+                    $response = ['status' => 0, 'message' => 'Failed to create record.'];
                     echo json_encode($response);
                 }
-                else{
-                    $response = ['status' => 0, 'message' => 'Car will be rented in this period.'];
-                    echo json_encode($response);
-                }
-            } else {
-                $response = ['status' => 0, 'message' => 'Failed to create record.'];
-                echo json_encode($response);
+                // $x=$user->make.'%';
             }
-            // $x=$user->make.'%';
         }
         break;
 

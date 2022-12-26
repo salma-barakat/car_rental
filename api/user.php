@@ -67,7 +67,7 @@ switch ($method) {
                     if ($stmt->execute()) {
                         // $response = ['status' => 1, 'message' => 'Record created successfully.'];
                         $row = $stmt->fetch();
-                        $response = ['status' => 1, 'message' => $row['id']];
+                        $response = ['status' => 1, 'message' => $row['user_id']];
                     }
                     else     $response = ['status' => 0, 'message' => "Registered before"];
 
@@ -91,7 +91,7 @@ switch ($method) {
                 // $response = ['status' => 1, 'message' => 'Record created successfully.'];
                 $row = $stmt->fetch();
                 if ($row) {
-                    $response = ['status' => 1, 'message' => $row['id'] , 'isAdmin'=>$row['is_admin']];
+                    $response = ['status' => 1, 'message' => $row['user_id'] , 'isAdmin'=>$row['is_admin']];
                 }
                 else{
                     $response = ['status' => 0, 'message' => 'Failed to Enter.'];
@@ -107,7 +107,7 @@ switch ($method) {
 
     case "PUT":
         $user = json_decode(file_get_contents('php://input'));
-        $sql = "UPDATE users SET name= :name, email =:email, mobile =:mobile, updated_at =:updated_at WHERE id = :id";
+        $sql = "UPDATE users SET name= :name, email =:email, mobile =:mobile, updated_at =:updated_at WHERE user_id = :id";
         $stmt = $conn->prepare($sql);
         $updated_at = date('Y-m-d');
         $stmt->bindParam(':id', $user->id);
@@ -125,7 +125,7 @@ switch ($method) {
         break;
 
     case "DELETE":
-        $sql = "DELETE FROM users WHERE id = :id";
+        $sql = "DELETE FROM users WHERE user_id = :id";
         $path = explode('/', $_SERVER['REQUEST_URI']);
 
         $stmt = $conn->prepare($sql);

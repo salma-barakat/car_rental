@@ -66,7 +66,7 @@ export default function SignUp() {
         setOpenModal(true);
       // setModalMsg(" registered successfully");
       setModalMsg({title:'Congrats',msg:'Registered successfully'});
-      setRedirect({stat:true,msg:res.data.msg});
+      setRedirect({stat:true,msg:res.data.message});
       
       console.log(res.data)
     }

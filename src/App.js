@@ -12,7 +12,8 @@ import Reports from "./pages/Reports"
 import  LoginHome from "./pages/LoginHome"
 import ReserveForm from "./pages/ReserveForm"
 import AddCar from "./pages/AddCar"
-import ViewAndEdit from "./pages/viewAndEdit"
+import ViewAndEdit from "./pages/viewAndEdit"  
+import AdminSearch from "./pages/AdminSearch"  
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/admin/viewAndEdit" element={<ViewAndEdit />}/>
           {/* <Route exact path="/reserve" element={<ReserveCarInfo />}/> */}
           <Route exact path="/user/:Userid/car/:id/reserve" element={<ReserveForm />}/>
+          <Route exact path="/admin/search" element={<AdminSearch />}/>
         </Routes>
     </div>
   );
