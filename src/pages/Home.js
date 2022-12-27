@@ -8,6 +8,7 @@ import axios from "axios";
 import {useEffect } from "react";
 import {url} from '../conf';
 
+
 function App() {
   const [data,setData]=useState([]);
   useEffect(() => {

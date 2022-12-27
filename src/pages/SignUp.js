@@ -19,6 +19,7 @@ import axios from 'axios';
 import Modal from '@mui/material/Modal';
 import { useState,useEffect } from 'react';
 import {url} from '../conf';
+import Navbar from "../components/Navbar"
 
 
 // import { useNavigate } from "react-router-dom"; 
@@ -89,6 +90,9 @@ console.log(inputs)
     backgroundRepeat: 'no-repeat',
     }
     return (
+      <>
+    {/* // <div className="App"> */}
+      <Navbar />
     <div style={myStyle}>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -166,12 +170,6 @@ console.log(inputs)
                     onChange={e=>{setInputs({ ...inputs, phoneNo: e.target.value })}} 
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
               </Grid>
               <Button
                 type="submit"
@@ -184,7 +182,7 @@ console.log(inputs)
               </Button>
               <Grid container>
                 <Grid item  >
-                  <Link href="#" variant="body2" >
+                  <Link href="/Log-In" variant="body2" >
                   <span style={{fontWeight: 'bold', fontSize: '20'}}>Already have an account? Sign in</span>
                   </Link>
                 </Grid>
@@ -210,6 +208,7 @@ console.log(inputs)
 }
       </ThemeProvider>
       </div>
+      </>
     );
   }
   

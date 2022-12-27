@@ -13,6 +13,7 @@ import Query3 from './Query3';
 import Query4 from './Query4'; 
 import Query5 from './Query5'; 
 import { Container } from '@mui/system';
+import Header from "../pages/Header";
 function TabPanel(props) {
 
   const { children, value, index, ...other } = props;
@@ -118,6 +119,9 @@ export default function VerticalTabs() {
   };
 
   return (
+    <>
+    {/* // <div className="App"> */}
+    <Header />
     <Box
      sx={{ borderBottom: 1, borderColor: 'divider' }}
     >
@@ -313,5 +317,6 @@ export default function VerticalTabs() {
           {<Query5 startingDate={pickDate3} endingDate={returnDate3} />}
       </TabPanel>
     </Box>
+    </>
   );
 }

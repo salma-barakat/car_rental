@@ -17,6 +17,7 @@ import img from "../carImgLogg.jpg"
 import { redirect, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Modal from '@mui/material/Modal';
+import Navbar from "../components/Navbar"
 // import { useNavigate } from "react-router-dom"; 
 import {url} from '../conf';
 const style = {
@@ -100,6 +101,9 @@ export default function LogIn() {
 
   // }
   return (
+    <>
+    {/* // <div className="App"> */}
+      <Navbar />
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
@@ -158,10 +162,6 @@ export default function LogIn() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -172,13 +172,8 @@ export default function LogIn() {
                 Log In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item  >
-                  <Link href="#" variant="body2" >
+                  <Link href="/Sign-Up" variant="body2" >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -206,5 +201,6 @@ export default function LogIn() {
 
 
     </ThemeProvider>
+    </>
   );
 }

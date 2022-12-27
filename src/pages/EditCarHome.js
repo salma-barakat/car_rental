@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Container } from '@mui/system';
-import Navbar from "../components/Navbar"
+import Header from "../pages/Header"
 import Grid from "../components/Grid"
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -43,7 +43,7 @@ export default function EditCarHome() {
   console.log(data)
    return (
     <Box>
-      <Navbar />
+      <Header />
       <Box
         component="form"
         sx={{

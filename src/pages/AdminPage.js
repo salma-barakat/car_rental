@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -96,7 +95,8 @@ console.log(inputs)
           <Button
             variant="contained"
             size="large"
-            href="/AddCar"
+            onClick={e=>history(window.location.pathname + '/addcar')}
+            //href="/AddCar"
             //sx={{ minWidth: 50 }}
           >
             Add a new car
@@ -104,7 +104,8 @@ console.log(inputs)
           <Button
             variant="contained"
             size="large"
-            href="/viewAndEdit"
+            onClick={e=>history(window.location.pathname + '/editCar')}
+            //href="/viewAndEdit"
            // sx={{ minWidth: 250 }}
           >
             View or edit a car
@@ -113,7 +114,8 @@ console.log(inputs)
           <Button
             variant="contained"
             size="large"
-            href="/Reports"
+            onClick={e=>history(window.location.pathname + '/reports')}
+            //href="/Reports"
            // sx={{ minWidth: 200 }}
           >
             View Reports
@@ -129,4 +131,3 @@ console.log(inputs)
     </>
     );
   }
-  
