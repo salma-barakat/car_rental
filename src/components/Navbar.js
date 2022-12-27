@@ -29,7 +29,8 @@ function ResponsiveAppBar() {
   const{Userid}=useParams();
   const menuClicked= even =>{
     console.log(even)
-    history("/"+even);
+    even!='Home' && history("/"+even);
+    even=='Home' && history("/");
   }
   const pages = Userid?['Home', 'ContactUs', 'Help']:['Home', 'ContactUs', 'Help','Sign-Up','Log-In'];
 
