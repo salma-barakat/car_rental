@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {url} from '../conf';
 import DataTable from '../components/Table'
+import Header from "../pages/Header";
 
 export default function AdminSearch() {
   const [data, setData] = useState([]);
@@ -48,8 +49,10 @@ export default function AdminSearch() {
   today = YYYY + '-' + MM + '-' + DD;
   console.log(data)
    return (
+    <>
+    {/* // <div className="App"> */}
+    <Header />
     <Box>
-      <Navbar />
       <Box
         component="form"
         sx={{
@@ -165,5 +168,6 @@ export default function AdminSearch() {
       </Box>
       {/* {data&&< Grid data={data} />} */}
     </Box>
+    </>
   );
 }

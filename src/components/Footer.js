@@ -32,7 +32,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-const pages = ['Home', 'ContactUs', 'Help','Sign-Up','Log-In'];
+const pages = ['Home', 'ContactUs','Sign-Up','Log-In'];
 
 const theme = createTheme({
   palette: {

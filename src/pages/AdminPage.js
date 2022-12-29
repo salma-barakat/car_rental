@@ -121,6 +121,16 @@ console.log(inputs)
             View Reports
           </Button>
 
+          <Button
+            variant="contained"
+            size="large"
+            onClick={e=>history(window.location.pathname + '/search')}
+            //href="/Reports"
+           // sx={{ minWidth: 200 }}
+          >
+            Search
+          </Button>
+
         </Stack>
         </div>
 
