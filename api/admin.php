@@ -14,11 +14,10 @@ switch ($method) {
     case "GET":
         $sql = "SELECT * FROM car";
         $path = explode('/', $_SERVER['REQUEST_URI']);
-        // echo $path[3];
+
         if (isset($path[3]) && is_numeric($path[3])) {
             $sql .= " WHERE plate_id = $path[3]";
             $stmt = $conn->prepare($sql);
-            //   $stmt->bindParam(':id', $path[2]);
             $stmt->execute();
             $cars = $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
@@ -32,24 +31,13 @@ switch ($method) {
 
     case "POST":
         $path = explode('/', $_SERVER['REQUEST_URI']);
-        // echo count($path);
         
         if (count($path) < 4 || $path[3] != 'New') {
 
-            // echo 'postt '.$path[3];
-            // select * from reservation where `plate_id`='901' and `return_time`> "2019-09-24 18:35:01" 
-            $user = new class
-            {
-            };
-            $user->make = "1";
-            $user->plate_id = "1";
             $where = "where";
             $And = "";
             $user = json_decode(file_get_contents('php://input'));
             $help='';
-
-           
-            // $stmt = $conn->prepare($sql);
 
             if (isset($user->plate_id) and ($user->plate_id) != '') {
                 $help .= $where . $And . " car.plate_id = :plate_id ";
@@ -171,10 +159,8 @@ switch ($method) {
             $stmt->bindParam(':plate_id', $user->plate_id);
 
             if ($stmt->execute()) {
-                // $response = ['status' => 1, 'message' => 'Record created successfully.'];
                 $row = $stmt->fetch();
-                if (!$row) { // here! as simple as that
-                    // echo 'No data found';
+                if (!$row) { 
                     $sql = " INSERT INTO car (plate_id,make,model,`year`,`description`,price,is_available,color,country,engin_capacity,img) VALUES 
                     (:plate_id,:make,:model,:year, :carDescription ,:price,:car_status,:color,:car_location,:engineCapacity,:imgURL);
                         ";
@@ -218,9 +204,7 @@ switch ($method) {
         $path = explode('/', $_SERVER['REQUEST_URI']);
         $sql = "UPDATE car SET make=:make,model=:model,`year`=:year,`description`=:description,price=:price,is_available=:is_available,color=:color,country=:country,engin_capacity=:engin_capacity WHERE plate_id = $path[4] ";
         $stmt = $conn->prepare($sql);
-        // $updated_at = date('Y-m-d');
-        // $stmt = $conn->prepare($sql);
-        // $stmt->bindParam(':plate_id', $user->plate_id);
+        
         $stmt->bindParam(':make', $user->make);
         $stmt->bindParam(':model', $user->model);
         $stmt->bindParam(':year', $user->year);
@@ -230,7 +214,6 @@ switch ($method) {
         $stmt->bindParam(':color', $user->color);
         $stmt->bindParam(':country', $user->country);
         $stmt->bindParam(':engin_capacity', $user->engin_capacity);
-        // $stmt->bindParam(':imgURL', $user->imgURL);
 
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record updated successfully.'];
@@ -244,10 +227,9 @@ switch ($method) {
         $path = explode('/', $_SERVER['REQUEST_URI']);
 
         $sql = "DELETE FROM car WHERE plate_id =$path[4] ";
-        // $path = explode('/', $_SERVER['REQUEST_URI']);
-
+   
         $stmt = $conn->prepare($sql);
-        // $stmt->bindParam(':id', $path[3]);
+       
 
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record deleted successfully.'];

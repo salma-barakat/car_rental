@@ -16,7 +16,7 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 // import { useHistory } from "react-router-dom";
-import { useNavigate,useParams } from "react-router-dom"; 
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -24,15 +24,21 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
+
   const history = useNavigate();
-  const{Userid}=useParams();
-  const menuClicked= even =>{
-    console.log(even)
-    even!='Home' && history("/"+even);
-    even=='Home' && history("/");
+  const { Userid } = useParams();
+  const menuClicked = even => {
+    console.log(Userid)
+    if (Userid) {
+      even != 'Home' && history(window.location.pathname + "/" + even);
+      even == 'Home' && history("/");
+    }else{
+    even != 'Home' && history("/" + even);
+    even == 'Home' && history("/");
+    }
   }
-  const pages = Userid?['Home', 'ContactUs']:['Home', 'ContactUs','Sign-Up','Log-In'];
+
+  let pages = Userid ? ['Home', 'ContactUs'] : ['Home', 'ContactUs', 'Sign-Up', 'Log-In'];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -103,7 +109,7 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" onClick={e=>menuClicked(page)}>{page}</Typography>
+                  <Typography textAlign="center" onClick={e => menuClicked(page)}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -132,11 +138,11 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={
-                    // handleCloseNavMenu();
-                   e=> menuClicked(page)
+                  // handleCloseNavMenu();
+                  e => menuClicked(page)
                 }
                 sx={{ my: 2, color: 'white', display: 'block' }}
-                // onClick={}
+              // onClick={}
               >
                 {page}
               </Button>

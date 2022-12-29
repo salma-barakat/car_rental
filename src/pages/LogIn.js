@@ -20,6 +20,7 @@ import Modal from '@mui/material/Modal';
 import Navbar from "../components/Navbar"
 // import { useNavigate } from "react-router-dom"; 
 import {url} from '../conf';
+import { useAuth } from '../components/auth';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -38,6 +39,7 @@ const theme = createTheme();
 
 export default function LogIn() {
   const history = useNavigate();
+  const auth =useAuth()
   // const handleSubmit = (event) => {
 
 
@@ -77,9 +79,11 @@ export default function LogIn() {
             setModalMsg("Incorect Email or password");
           } else if (res.data.status == 1 && res.data.isAdmin=="0") {
             history("/user/" + res.data.message)
+            auth.Login('user')
           }
          else if (res.data.status == 1 && res.data.isAdmin=='1') {
           history("/admin")
+          auth.Login('admin')
         }
           console.log(res.data)
           // if (Array.isArray(res.data))

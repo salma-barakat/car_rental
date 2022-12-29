@@ -98,10 +98,10 @@ export default function FormPropsTextFields() {
           />
           <TextField
             id="standard-search"
-            label="Origin"
+            label="Country"
             type="search"
             variant="standard"
-            onChange={e=>{setInputs({ ...inputs, origin: e.target.value })}} 
+            onChange={e=>{setInputs({ ...inputs, country: e.target.value })}} 
           />
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-label">Car Status</InputLabel>
@@ -113,7 +113,7 @@ export default function FormPropsTextFields() {
               onChange={e=>{setInputs({ ...inputs, car_status: e.target.value });setSelect(e.target.value)}} 
             >
               <MenuItem value={'Availbale for rent'}>Availbale for rent</MenuItem>
-              <MenuItem value={"Reserved"}>Reserved</MenuItem>
+              <MenuItem value={"Reserved"}>out of service</MenuItem>
               {/* <MenuItem value={30}>Thirty</MenuItem> */}
             </Select>
           </FormControl>

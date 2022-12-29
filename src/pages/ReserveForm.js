@@ -48,6 +48,7 @@ const ReserveForm = () => {
   const { id } = useParams();
   console.log(id)
   const { Userid } = useParams();
+  console.log(Userid)
   useEffect(() => {
     axios({
       method: 'GET',
@@ -101,7 +102,7 @@ const ReserveForm = () => {
     var Difference_In_Time = date2.getTime() - date1.getTime();
 
     // To calculate the no. of days between two dates
-    setDifference_In_Days(Difference_In_Time / (1000 * 3600 * 24));
+    setDifference_In_Days((Difference_In_Time / (1000 * 3600 * 24))+1);
     // console.log(Difference_In_Days)
   }, [pickDate, returnDate])
   // const handleSubmit = (event) => {

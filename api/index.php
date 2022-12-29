@@ -33,7 +33,7 @@ switch ($method) {
     case "POST":
         $path = explode('/', $_SERVER['REQUEST_URI']);
         // echo count($path);
-        
+
         if (count($path) < 4 || $path[3] != 'reserve') {
 
             // echo 'postt '.$path[3];
@@ -70,8 +70,8 @@ switch ($method) {
                 $where = '';
                 $And = "and";
             }
-            if (isset($user->origin) and ($user->origin) != '') {
-                $sql .= $where . $And . " origin like :origin ";
+            if (isset($user->country) and ($user->country) != '') {
+                $sql .= $where . $And . " country like :country ";
                 $where = '';
                 $And = "and";
             }
@@ -106,9 +106,9 @@ switch ($method) {
                 $stmt->bindParam(':year', $z);
                 $z = $user->year . "%";
             }
-            if (isset($user->origin) and ($user->origin) != '') {
-                $stmt->bindParam(':origin', $w);
-                $w = $user->origin . "%";
+            if (isset($user->country) and ($user->country) != '') {
+                $stmt->bindParam(':country', $w);
+                $w = $user->country . "%";
             }
             if (isset($user->price) and ($user->price) != '') {
                 $stmt->bindParam(':price', $q);
@@ -157,8 +157,10 @@ switch ($method) {
                             // echo $email;
                             $date = date("Y-m-d", time());
                             // echo $date;
+                            $date = date('Y-m-d');
+
                             $sql = "INSERT INTO reservation (plate_id,user_id,payment,time_reservation,pickup_time,return_time,is_paid,`email`) VALUES 
-                    ($CarId,$UserId,NULL,'2020-2-2',:pickDate,:returnDate,false,'$email')";
+                    ($CarId,$UserId,NULL,'$date',:pickDate,:returnDate,false,'$email')";
                             $stmt = $conn->prepare($sql);
                             // echo $user->pickDate;
                             $stmt->bindParam(':pickDate', $user->pickDate);

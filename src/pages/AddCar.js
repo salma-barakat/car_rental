@@ -56,7 +56,7 @@ export default function AddCar() {
     const formData={
       ...inputs
     }
-    if(!inputs.plate_id || !inputs.color ||! inputs.engineCapacity || !inputs.isAvailable|| !inputs.make ||
+    if(!inputs.plate_id || !inputs.color ||! inputs.engineCapacity || !inputs.make ||
       !inputs.model || !inputs.year ||! inputs.price || !inputs.imgURL|| !inputs.car_location ||
       !inputs.carDescription || !inputs.car_status  ){
       
@@ -196,7 +196,7 @@ console.log(inputs)
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     fullWidth
@@ -206,7 +206,7 @@ console.log(inputs)
                     onChange={e=>{setInputs({ ...inputs, isAvailable: e.target.value })}} 
 
                   />
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -255,9 +255,10 @@ console.log(inputs)
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                 <InputLabel id="demo-simple-select-label">Car Status</InputLabel>
                 <Select
+                xs={12} sm={6}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={select}
@@ -265,11 +266,26 @@ console.log(inputs)
                 onChange={e=>{setInputs({ ...inputs, car_status: e.target.value });setSelect(e.target.value)}} 
                 >
               <MenuItem value={'Availbale for rent'}>Availbale for rent</MenuItem>
-              <MenuItem value={"Reserved"}>Reserved</MenuItem>
+              <MenuItem value={"Reserved"}>out of service</MenuItem>
+              {/* <MenuItem value={30}>Thirty</MenuItem> */}
+            {/* </Select> */}
+                {/* </Grid> */} 
+                <Grid item xs={12} sm={12}>
+                <FormControl  sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-label">Car Status</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={select}
+              label="Car Status"
+              onChange={e=>{setInputs({ ...inputs, car_status: e.target.value });setSelect(e.target.value)}} 
+            >
+              <MenuItem value={'Availbale for rent'}>Availbale for rent</MenuItem>
+              <MenuItem value={"Reserved"}>out of service</MenuItem>
               {/* <MenuItem value={30}>Thirty</MenuItem> */}
             </Select>
-                </Grid>
-
+          </FormControl>
+          </Grid>
               </Grid>
               <Button
                 type="submit"

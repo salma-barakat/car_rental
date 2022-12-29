@@ -46,7 +46,7 @@ const history = useNavigate();
       car!=[]&& car.map((item, index) => (
           <Grid xs={2} sm={4} md={3} key={index}>
             <Item  onClick={e=>history((window.location.pathname!='/'?window.location.pathname:'')+"/car/"+item.plate_id)} >
-            <Card img={item.img} model={item.model} title={item.make} description={item.description} price={item.price} status={item.car_status} year={item.year}/>
+            <Card img={item.img} model={item.model} title={item.make} description={item.description} price={item.price} status={item.country} year={item.year}/>
             </Item>
           </Grid>
         ))}

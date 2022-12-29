@@ -11,30 +11,11 @@ $conn = $objDb->connect();
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
-    case "GET":
-        // $sql = "SELECT * FROM car";
-        // $path = explode('/', $_SERVER['REQUEST_URI']);
-        // // echo $path[3];
-        // if (isset($path[3]) && is_numeric($path[3])) {
-        //     $sql .= " WHERE plate_id = $path[3]";
-        //     $stmt = $conn->prepare($sql);
-        //     //   $stmt->bindParam(':id', $path[2]);
-        //     $stmt->execute();
-        //     $cars = $stmt->fetch(PDO::FETCH_ASSOC);
-        // } else {
-        //     $stmt = $conn->prepare($sql);
-        //     $stmt->execute();
-        //     $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // }
-
-        // echo json_encode($cars);
-        // break;
 
     case "POST":
         $path = explode('/', $_SERVER['REQUEST_URI']);  
         $user = json_decode(file_get_contents('php://input'));
         if (count($path) < 4 || $path[3] == 'Query1') {
-            // echo $path[3];      
             $user = json_decode(file_get_contents('php://input'));
             $sql = "SELECT * 
             FROM reservation AS r JOIN user AS u ON r.email=u.email JOIN car AS c ON r.plate_id=c.plate_id
@@ -57,7 +38,6 @@ switch ($method) {
         } else if (count($path) < 4 || $path[3] == 'Query3') {
             
             $user = json_decode(file_get_contents('php://input'));
-            // echo  $user->specificDay;
             $sql = "SELECT c.plate_id,`status`,make,model,`year`,`description`,price
             FROM reservation AS r JOIN car AS c ON r.plate_id=c.plate_id
             WHERE ( pickup_time <=:specificDay AND  return_time >= :specificDay ) 
@@ -73,7 +53,6 @@ switch ($method) {
 
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':specificDay', $user->specificDay);
-            // $stmt->bindParam(':returnDate1', $user->returnDate1);
 
             if ($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record created successfully.'];
@@ -85,7 +64,7 @@ switch ($method) {
         }else if (count($path) < 4 || $path[3] == 'Query4') {
             
             $user = json_decode(file_get_contents('php://input'));
-            // echo  $user->specificDay;
+         
             $sql = "SELECT r.plate_id,r.time_reservation,r.pickup_time,r.return_time,r.is_paid,`status`,u.fname,u.lname,c.model
             FROM reservation AS r JOIN `user` AS u ON r.email=u.email JOIN car AS c ON r.plate_id=c.plate_id
             WHERE r.user_id=:id";
@@ -94,7 +73,7 @@ switch ($method) {
 
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $user->id);
-            // $stmt->bindParam(':returnDate1', $user->returnDate1);
+
 
             if ($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record created successfully.'];
@@ -106,17 +85,16 @@ switch ($method) {
         } else if (count($path) < 4 || $path[3] == 'Query5') {
             
             $user = json_decode(file_get_contents('php://input'));
-            // echo  $user->specificDay;
+           
             $sql = "SELECT r.pickup_time As `DAY` ,SUM( DATEDIFF(r.return_time, r.pickup_time)*c.price ) AS daily_payment
             FROM reservation AS r JOIN car AS c ON r.plate_id=c.plate_id
             WHERE ( r.pickup_time BETWEEN :startingDate AND :endingDate )
             GROUP BY (r.pickup_time);";
-            
-        // echo $user->startingDate;
+       
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':startingDate', $user->startingDate);
             $stmt->bindParam(':endingDate', $user->endingDate);
-            // $stmt->bindParam(':returnDate1', $user->returnDate1);
+           
 
             if ($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record created successfully.'];
@@ -134,9 +112,6 @@ switch ($method) {
         $path = explode('/', $_SERVER['REQUEST_URI']);
         $sql = "UPDATE car SET make=:make,model=:model,`year`=:year,`description`=:description,price=:price,is_available=:is_available,color=:color,country=:country,engin_capacity=:engin_capacity WHERE plate_id = $path[4] ";
         $stmt = $conn->prepare($sql);
-        // $updated_at = date('Y-m-d');
-        // $stmt = $conn->prepare($sql);
-        // $stmt->bindParam(':plate_id', $user->plate_id);
         $stmt->bindParam(':make', $user->make);
         $stmt->bindParam(':model', $user->model);
         $stmt->bindParam(':year', $user->year);
@@ -146,7 +121,7 @@ switch ($method) {
         $stmt->bindParam(':color', $user->color);
         $stmt->bindParam(':country', $user->country);
         $stmt->bindParam(':engin_capacity', $user->engin_capacity);
-        // $stmt->bindParam(':imgURL', $user->imgURL);
+
 
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record updated successfully.'];
@@ -160,11 +135,9 @@ switch ($method) {
         $path = explode('/', $_SERVER['REQUEST_URI']);
 
         $sql = "DELETE FROM car WHERE plate_id =$path[4] ";
-        // $path = explode('/', $_SERVER['REQUEST_URI']);
 
         $stmt = $conn->prepare($sql);
-        // $stmt->bindParam(':id', $path[3]);
-
+  
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record deleted successfully.'];
         } else {

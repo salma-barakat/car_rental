@@ -1,6 +1,7 @@
 
 import './App.css';
-import {Routes , Route} from "react-router-dom"; 
+import * as React from 'react';
+import {Routes , Route,Navigate} from "react-router-dom"; 
 import Home from "./pages/Home"
 import  ContactUs from "./pages/ContactUs"
 import  SignUp from "./pages/SignUp"
@@ -14,32 +15,41 @@ import AddCar from "./pages/AddCar"
 import AdminSearch from "./pages/AdminSearch"  
 import EditCarHome from "./pages/EditCarHome" 
 import EditCarInfo from "./pages/EditCarInfo" 
+import { AuthProvider } from './components/auth';
+import { RequireAuth } from './components/RequireAuth';
+const ProtectedRoute = ({ user, redirectPath = '/landing' }) => {
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  }
 
+  // return <Outlet />;
+};
 function App() {
+  // const [user,setUser]=React.useState(false);
+
   return (
+    <AuthProvider>
     <div className="App">
     
-     {/* <Home /> */}
      <Routes>
           <Route exact path="/" element={<Home/>}/>
-          {/* <Route exact path="/home" element={<Home/>}/> */}
           <Route exact path="/ContactUs" element={<ContactUs/>}/>
+          <Route private exact path="user/:Userid/ContactUs" element={<ContactUs/>}/>
           <Route exact path="/Log-In" element={<LogIn/>}/>
-          <Route exact path="/Log-InAdmin" element={<LogIn/>}/>
           <Route exact path="/Sign-Up" element={<SignUp/>}/>
           <Route exact path="/car/:id" element={<CarInfo/>}/>
-          <Route exact path="/admin" element={<AdminPage/>}/>
-          <Route exact path="/admin/reports" element={<Reports/>}/>
-          <Route exact path="/user/:Userid/car/:id" element={<CarInfo/>}/>
-          <Route exact path="/admin/editcar/car/:id" element={<EditCarInfo/>}/>
-          <Route exact path="/user/:Userid" element={<LoginHome />}/>
-          <Route exact path="/admin/AddCar" element={<AddCar />}/>
-          {/* <Route exact path="/reserve" element={<ReserveCarInfo />}/> */}
-          <Route exact path="/user/:Userid/car/:id/reserve" element={<ReserveForm />}/>
-          <Route exact path="/admin/search" element={<AdminSearch />}/>
-          <Route exact path="/admin/editCar" element={<EditCarHome />}/>
+          <Route exact path="/admin" element={ <RequireAuth><AdminPage/> </RequireAuth>}/>
+          <Route exact path="/admin/reports" element={<RequireAuth><Reports/></RequireAuth>}/>
+          <Route exact path="/user/:Userid/car/:id" element={<RequireAuth><CarInfo/></RequireAuth>}/>
+          <Route exact path="/admin/editcar/car/:id" element={<RequireAuth><EditCarInfo/></RequireAuth>}/>
+          <Route private exact path="/user/:Userid" element={<RequireAuth>< LoginHome /></RequireAuth>}/>
+          <Route exact path="/admin/AddCar" element={<RequireAuth><AddCar /></RequireAuth>}/>
+          <Route exact path="/user/:Userid/car/:id/reserve" element={<RequireAuth><ReserveForm /></RequireAuth>}/>
+          <Route exact path="/admin/search" element={<RequireAuth><AdminSearch /></RequireAuth>}/>
+          <Route exact path="/admin/editCar" element={<RequireAuth><EditCarHome /></RequireAuth>}/>
         </Routes>
     </div>
+    </AuthProvider>
   );
 }
 
