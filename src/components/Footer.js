@@ -1,49 +1,20 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import Paper from '@mui/material/Paper';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
 import { createTheme } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
-import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
 const pages = ['Home', 'ContactUs','Sign-Up','Log-In'];
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: purple[500],
-    },
-    secondary: {
-      main: '#f44336',
-    },
-  },
-});
+
 export default function FixedBottomNavigation() {
   const history = useNavigate();
 
@@ -162,12 +133,10 @@ export default function FixedBottomNavigation() {
               <Button
                 key={page}
                 onClick={
-                    // handleCloseNavMenu();
                    e=> menuClicked(page)
                 }
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 md={{alignItems:"right"} }
-                // onClick={}
               >
                 {page}
               </Button>

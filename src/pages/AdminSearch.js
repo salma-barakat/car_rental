@@ -18,9 +18,7 @@ export default function AdminSearch() {
   const [data, setData] = useState([]);
   const [inputs, setInputs] = useState([]);
   const [select,setSelect] = useState('');
-  const [age, setAge] = React.useState('');
   
-  // const [inputs,setInputs]= useState({plate_id:'',make:"",model:'',year:'',price:'',car_status:'',color:'',origin:''});
  console.log(inputs)
  const submit=async(e)=>{
 
@@ -44,13 +42,12 @@ export default function AdminSearch() {
   },[inputs]);
   var today = new Date();
   var DD = String(today.getDate()).padStart(2, '0');
-  var MM = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var MM = String(today.getMonth() + 1).padStart(2, '0'); 
   var YYYY = today.getFullYear();
   today = YYYY + '-' + MM + '-' + DD;
   console.log(data)
    return (
     <>
-    {/* // <div className="App"> */}
     <Header />
     <Box>
       <Box
@@ -153,20 +150,16 @@ export default function AdminSearch() {
                     value={inputs.reservationDate}
                     onChange={(e) => {
                       console.log(e.target.value)
-                      // if (e.target.value <= today) {
                         setInputs({ ...inputs, reservationDate: e.target.value })
-                      // }
                     }
                     }
                   />
              
-              {/* <MenuItem value={30}>Thirty</MenuItem> */}
               <DataTable data = {data} />
            
 
         </div>
       </Box>
-      {/* {data&&< Grid data={data} />} */}
     </Box>
     </>
   );

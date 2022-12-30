@@ -16,9 +16,7 @@ export default function FormPropsTextFields() {
   const [data, setData] = useState([]);
   const [inputs, setInputs] = useState([]);
   const [select,setSelect] = useState('');
-  const [age, setAge] = React.useState('');
   
-  // const [inputs,setInputs]= useState({plate_id:'',make:"",model:'',year:'',price:'',car_status:'',color:'',origin:''});
  
  const submit=async(e)=>{
 
@@ -114,7 +112,6 @@ export default function FormPropsTextFields() {
             >
               <MenuItem value={'Availbale for rent'}>Availbale for rent</MenuItem>
               <MenuItem value={"Reserved"}>out of service</MenuItem>
-              {/* <MenuItem value={30}>Thirty</MenuItem> */}
             </Select>
           </FormControl>
 

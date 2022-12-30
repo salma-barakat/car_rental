@@ -10,7 +10,9 @@ import {url} from '../conf';
 
 
 function App() {
+
   const [data,setData]=useState([]);
+
   useEffect(() => {
     axios({
       method: 'GET',
@@ -31,20 +33,13 @@ function App() {
   
   return (
     <>
-    {/* // <div className="App"> */}
       <Navbar />
-      {/* src\carImg.jpg */}
-      {/* <img src={img}></img> */}
       <HeaderImg />
       <Container>
         <h1>Some of our cars</h1>
         <Grid data={data}/>
       </Container>
-      {/* <Container> */}
         <Footer />
-      {/* </Container> */}
-      
-    {/* </div> */}
     </>
   );
 }

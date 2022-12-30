@@ -51,7 +51,6 @@ export default function VerticalTabs() {
   const [returnDate1, setReturnDate1] = React.useState();
   const [returnDate, setReturnDate] = React.useState();
   const [specificDay,setSpecificDay] = React.useState('22-2-2020');
-  // const [returnDate2, setReturnDate2] = React.useState();
   const [returnDate3, setReturnDate3] = React.useState();
   const [pickDate1, setPickDate1] = React.useState('22-2-2020');
   const [pickDate, setPickDate] = React.useState();
@@ -82,27 +81,14 @@ export default function VerticalTabs() {
     console.log("in ")
     Query1Fun();
   }, [returnDate1, pickDate1])
-
-  // useEffect(() => {
-  //   console.log("in ")
-  //   Query3Fun();
-  // }, [specificDay])
-
-  // const [pickDate, setPickDate] = React.useState(new Date().toISOString().slice(0, 10));
   const [Difference_In_Days, setDifference_In_Days] = React.useState(new Date().toISOString().slice(0, 10));
-  // const [data, setData] = React.useState(new Date().toISOString().slice(0, 10));
-  const [msg, setMsg] = useState();
-  // const history = useNavigate();
   React.useEffect(() => {
     var date1 = new Date(pickDate);
     var date2 = new Date(returnDate);
 
-    // To calculate the time difference of two dates
     var Difference_In_Time = date2.getTime() - date1.getTime();
 
-    // To calculate the no. of days between two dates
     setDifference_In_Days(Difference_In_Time / (1000 * 3600 * 24));
-    // console.log(Difference_In_Days)
   }, [pickDate, returnDate])
 
   var today = new Date();
@@ -120,18 +106,14 @@ export default function VerticalTabs() {
 
   return (
     <>
-    {/* // <div className="App"> */}
     <Header />
     <Box
      sx={{ borderBottom: 1, borderColor: 'divider' }}
     >
       <Tabs
-        // orientation="horizontal"
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        // aria-label="Vertical tabs example"
-        // sx={{ borderRight: 1, borderColor: 'divider' }}
       >
         <Tab label="All reservations within a specified period including all car and customer information" {...a11yProps(0)} />
         <Tab label="All reservations of any car within a specified period including all car information" {...a11yProps(1)} />
@@ -141,7 +123,6 @@ export default function VerticalTabs() {
       </Tabs>
       <TabPanel value={value} index={0} >
         <Container/>
-        {/* <h5> from </h5> */}
         <TextField
           id="date"
           label="Starting Date"
@@ -154,13 +135,10 @@ export default function VerticalTabs() {
           value={pickDate1}
           onChange={(e) => {
             console.log(e.target.value)
-            // if (e.target.value <= today) {
               setPickDate1(e.target.value)
-            // }
           }
           }
         />
-        {/* <h5> to </h5> */}
         <TextField
           id="date"
           label="Ending Date"
@@ -173,9 +151,7 @@ export default function VerticalTabs() {
           value={returnDate1}
           onChange={(e) => {
             console.log(e.target.value)
-            // if (e.target.value >= pickDate1) {
               setReturnDate1(e.target.value)
-            // }
           }
           }
         />
@@ -185,7 +161,6 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={1} >
         <Container/>
-        {/* <h5> from </h5> */}
         <TextField
           id="date"
           label="Starting Date"
@@ -198,13 +173,10 @@ export default function VerticalTabs() {
           value={pickDate1}
           onChange={(e) => {
             console.log(e.target.value)
-            // if (e.target.value <= today) {
               setPickDate1(e.target.value)
-            // }
           }
           }
         />
-        {/* <h5> to </h5> */}
         <TextField
           id="date"
           label="Ending Date"
@@ -217,9 +189,7 @@ export default function VerticalTabs() {
           value={returnDate1}
           onChange={(e) => {
             console.log(e.target.value)
-            // if (e.target.value >= pickDate1) {
               setReturnDate1(e.target.value)
-            // }
           }
           }
         />
@@ -241,10 +211,8 @@ export default function VerticalTabs() {
           value={specificDay}
           onChange={(e) => {
             console.log(e.target.value)
-            // if (e.target.value <= today) {
               setSpecificDay(e.target.value)
 
-            // }
 
           }
 
@@ -263,7 +231,6 @@ export default function VerticalTabs() {
           id="cid"
           label="customer id"
           name="cid"
-          //autoComplete=""
           autoFocus
           onChange={e=>{setUserId(e.target.value)}}
         />
@@ -283,10 +250,8 @@ export default function VerticalTabs() {
           value={pickDate3}
           onChange={(e) => {
             console.log(e.target.value)
-            // if (e.target.value <= today) {
               setPickDate3(e.target.value)
 
-            // }
 
           }
 
@@ -305,7 +270,6 @@ export default function VerticalTabs() {
           value={returnDate3}
           onChange={(e) => {
             console.log(e.target.value)
-            // if (e.target.value <= today) {
               setReturnDate3(e.target.value)
 
             // }

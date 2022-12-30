@@ -22,9 +22,7 @@ export default function BasicModal({msg,title, redirect,openModel}) {
   const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {setOpen(false); history(redirect);openModel=false}
-// useEffect(()=>{
 
-// },[])
 console.log(open);
   return (
     <div>

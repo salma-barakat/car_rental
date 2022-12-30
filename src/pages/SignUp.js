@@ -4,8 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -21,8 +19,6 @@ import { useState,useEffect } from 'react';
 import {url} from '../conf';
 import Navbar from "../components/Navbar"
 
-
-// import { useNavigate } from "react-router-dom"; 
 
 const style = {
   position: 'absolute',
@@ -46,6 +42,8 @@ export default function SignUp() {
   const [redirect, setRedirect] = useState({stat:false,msg:''});
   const [openModal,setOpenModal] = React.useState(false);
   const [modalMsg,setModalMsg] = React.useState('');
+  
+
   const handleSubmit=async(event)=>{
    
     event.preventDefault();
@@ -53,10 +51,13 @@ export default function SignUp() {
     const formData={
       ...inputs
     }
-    if(!inputs.firstName || !inputs.lastName ||! inputs.email || !inputs.password|| !inputs.phoneNo){
+    if(!inputs.firstName || !inputs.lastName ||! inputs.email || !inputs.password|| !inputs.phoneNo || !inputs.email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
       setOpenModal(true);
-      setModalMsg("Enter all required data.");
       setModalMsg({title:'Error' , msg:'Enter all required data.'});
+      if (!inputs.email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+        setOpenModal(true);
+        setModalMsg({title:'Error' , msg:'Enter correct email.'}); 
+      }
     }  else{
     await axios.post(url+'api/user.php/New',formData,{headers})
     .then(res=>{
@@ -65,7 +66,6 @@ export default function SignUp() {
       setModalMsg({title:'Error' , msg:'user registered before'});
       }else if(res.data.status==1){
         setOpenModal(true);
-      // setModalMsg(" registered successfully");
       setModalMsg({title:'Congrats',msg:'Registered successfully'});
       setRedirect({stat:true,msg:res.data.message});
       
@@ -79,6 +79,8 @@ export default function SignUp() {
   }
 }
 
+
+
 console.log(inputs)
   const history = useNavigate();
     const myStyle={
@@ -91,7 +93,6 @@ console.log(inputs)
     }
     return (
       <>
-    {/* // <div className="App"> */}
       <Navbar />
     <div style={myStyle}>
       <ThemeProvider theme={theme}>

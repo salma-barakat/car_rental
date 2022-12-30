@@ -106,23 +106,12 @@ export default function EditCarInfo() {
                 console.log(error)
             });
     }
-    // }
-    const buttonNavig = () => {
-        if (Userid) {
-            //     // form
-            //     history(window.location.pathname + "/reserve");
-            // }
-            // else {
-            //     history("/Log-In");
-        }
-
-    }
+   
     console.log(inputs);
     useEffect(() => {
         setData({});
         setRow([]);
 
-        // console.log("herereeeeeeeeeeeeeeeeeeee")
         axios({
             method: 'GET',
             url: url + `api/admin.php/${id}`,
@@ -158,7 +147,6 @@ export default function EditCarInfo() {
             else setImg(data[key]);
         }
     }, [data])
-    // console.log(info);
     console.log(row);
     return (
         <Container>
@@ -192,11 +180,9 @@ export default function EditCarInfo() {
                 </Table>
             </TableContainer>
             <Button variant="contained" onClick={handleSubmit} >
-                {/* {(Userid) ? "Reserve" : "LogIn first"} */}
                 Edit
             </Button>
             <Button variant="contained" onClick={handleDelete} >
-                {/* {(Userid) ? "Reserve" : "LogIn first"} */}
                 Delete
             </Button>
             {openModal && <Modal

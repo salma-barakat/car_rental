@@ -4,9 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -16,17 +13,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../imgSign.jpg"
 import { useNavigate, useParams } from "react-router-dom";
 import Stack from '@mui/material/Stack';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-// import BasicModal from '../components/Modal'
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
+import axios from 'axios';
 import Modal from '@mui/material/Modal';
 import {url} from '../conf';
-// import { useNavigate } from "react-router-dom"; 
 
 const style = {
   position: 'absolute',
@@ -79,42 +69,26 @@ const ReserveForm = () => {
         console.log(res.data)
         setOpen(true);
         setMsg(res.data)
-        //   if (Array.isArray(res.data))
-        // setData(res.data);
+        
       }
       )
       .catch(function (error) {
         console.log(error)
       });
   }
-  // const [value, setValue] = React.useState(null);
+
   const [returnDate, setReturnDate] = React.useState(new Date().toISOString().slice(0, 10));
   const [pickDate, setPickDate] = React.useState(new Date().toISOString().slice(0, 10));
   const [Difference_In_Days, setDifference_In_Days] = React.useState(new Date().toISOString().slice(0, 10));
   const [data, setData] = React.useState(new Date().toISOString().slice(0, 10));
   const [msg, setMsg] = useState();
-  // const history = useNavigate();
   React.useEffect(() => {
     var date1 = new Date(pickDate);
     var date2 = new Date(returnDate);
-
-    // To calculate the time difference of two dates
     var Difference_In_Time = date2.getTime() - date1.getTime();
-
-    // To calculate the no. of days between two dates
     setDifference_In_Days((Difference_In_Time / (1000 * 3600 * 24))+1);
-    // console.log(Difference_In_Days)
   }, [pickDate, returnDate])
-  // const handleSubmit = (event) => {
-
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
-
+ 
   const myStyle = {
     backgroundImage: `url(${backgroundImage})`,
     height: '120vh',
@@ -128,23 +102,13 @@ const ReserveForm = () => {
     endDate: new Date(),
     key: 'selection',
   }
-  const handleSelect = (ranges) => {
-    console.log(ranges);
-    // {
-    //   selection: {
-    //     startDate: [native Date Object],
-    //     endDate: [native Date Object],
-    //   }
-    // }
-  }
+  
   const history = useNavigate();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => { setOpen(false); history(msg.status==1?"/user/"+Userid:"");}
-  // console.log(openModal)
   var today = new Date();
   var DD = String(today.getDate()).padStart(2, '0');
-  var MM = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var MM = String(today.getMonth() + 1).padStart(2, '0'); 
   var YYYY = today.getFullYear();
   today = YYYY + '-' + MM + '-' + DD
   console.log(typeof returnDate)
@@ -229,8 +193,6 @@ const ReserveForm = () => {
               >
                 Reserve
               </Button>
-              {/* {openModal && */}
-                {/* // <BasicModal handleOpen={setOpenModal(false)}  msg={msg.message} title={msg.status==1?"Success":"Failed"} redirect={msg.status==1?"/user/"+Userid:""}/> */}
                 {open&&<Modal
                   open={open}
                   onClose={handleClose}
@@ -247,7 +209,6 @@ const ReserveForm = () => {
                   </Box>
                 </Modal>
 }
-
             </Box>
           </Box>
         </Container>

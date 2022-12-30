@@ -37,7 +37,6 @@ else{
   useEffect(() => {
     setData({});
     setRow([]);
-    // console.log("herereeeeeeeeeeeeeeeeeeee")
     axios({
       method: 'GET',
       url: url+`api/${id}`,

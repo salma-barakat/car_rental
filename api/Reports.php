@@ -69,11 +69,8 @@ switch ($method) {
             FROM reservation AS r JOIN `user` AS u ON r.email=u.email JOIN car AS c ON r.plate_id=c.plate_id
             WHERE r.user_id=:id";
             ;
-        
-
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $user->id);
-
 
             if ($stmt->execute()) {
                 $response = ['status' => 1, 'message' => 'Record created successfully.'];
@@ -86,7 +83,8 @@ switch ($method) {
             
             $user = json_decode(file_get_contents('php://input'));
            
-            $sql = "SELECT r.pickup_time As `DAY` ,SUM( DATEDIFF(r.return_time, r.pickup_time)*c.price ) AS daily_payment
+            $sql = "SELECT r.pickup_time As `DAY` ,SUM( (DATEDIFF(r.return_time, r.pickup_time)+1)
+            *c.price ) AS daily_payment
             FROM reservation AS r JOIN car AS c ON r.plate_id=c.plate_id
             WHERE ( r.pickup_time BETWEEN :startingDate AND :endingDate )
             GROUP BY (r.pickup_time);";
@@ -107,42 +105,4 @@ switch ($method) {
    
         break;
 
-    case "PUT":
-        $user = json_decode(file_get_contents('php://input'));
-        $path = explode('/', $_SERVER['REQUEST_URI']);
-        $sql = "UPDATE car SET make=:make,model=:model,`year`=:year,`description`=:description,price=:price,is_available=:is_available,color=:color,country=:country,engin_capacity=:engin_capacity WHERE plate_id = $path[4] ";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':make', $user->make);
-        $stmt->bindParam(':model', $user->model);
-        $stmt->bindParam(':year', $user->year);
-        $stmt->bindParam(':description', $user->description);
-        $stmt->bindParam(':price', $user->price);
-        $stmt->bindParam(':is_available', $user->is_available);
-        $stmt->bindParam(':color', $user->color);
-        $stmt->bindParam(':country', $user->country);
-        $stmt->bindParam(':engin_capacity', $user->engin_capacity);
-
-
-        if ($stmt->execute()) {
-            $response = ['status' => 1, 'message' => 'Record updated successfully.'];
-        } else {
-            $response = ['status' => 0, 'message' => 'Failed to update record.'];
-        }
-        echo json_encode($response);
-        break;
-
-    case "DELETE":
-        $path = explode('/', $_SERVER['REQUEST_URI']);
-
-        $sql = "DELETE FROM car WHERE plate_id =$path[4] ";
-
-        $stmt = $conn->prepare($sql);
-  
-        if ($stmt->execute()) {
-            $response = ['status' => 1, 'message' => 'Record deleted successfully.'];
-        } else {
-            $response = ['status' => 0, 'message' => 'Failed to delete record.'];
-        }
-        echo json_encode($response);
-        break;
 }

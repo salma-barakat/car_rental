@@ -9,17 +9,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 import {url} from '../conf'
-// const cols=["user_id"	,"fname",	"lname",	"phone",	"email"	,"plate_id",	"make",	"model"	,"year",	"color",	"country"	,"price"	
-// ,"engin_capacity",	"description"	,"is_available",	"time_reservation",	"pickup_time",	"return_time"];
-// const cols2=["plate_id",	"make",	"model"	,"year",	"color",	"country"	,"price"	
-// ,"engin_capacity",	"description"	,"is_available",	"time_reservation",	"pickup_time",	"return_time"];
-// let cols=["plate_id",	"make",	"model"	,"year",	"color",	"country"	,"price"	
-// ,"engin_capacity",	"description"	,"is_available",	"time_reservation",	"pickup_time",	"return_time"];
-
-//  let columns = 
-//     cols.map((col)=>{
-//         return { id: col, label: col, minWidth: 10, maxWidth:200 }
-//     })
 
 export default function Query({specificDay}) {
   const [page, setPage] = React.useState(0);
@@ -28,9 +17,7 @@ export default function Query({specificDay}) {
   const [columns,setColumns] = React.useState([]);
   const [data,setData] = React.useState([]);
 
-// React.useEffect(()=>{
-//     setColumns(columnss);
-// })
+
 
 const Query3Fun = async () => {
 

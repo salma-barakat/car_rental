@@ -51,13 +51,11 @@ const backgroundImage = img
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function AdminPage() {
   const handleClose = () => { setOpenModal(false); if(redirect.stat) history("/user/"+redirect.msg) }
   const [inputs, setInputs] = useState([]);
   const [redirect, setRedirect] = useState({stat:false,msg:''});
   const [openModal,setOpenModal] = React.useState(false);
-  const [modalMsg,setModalMsg] = React.useState('');
-  
 
 console.log(inputs)
   const history = useNavigate();

@@ -14,7 +14,6 @@ switch ($method) {
     case "GET":
         $sql = "SELECT * FROM car";
         $path = explode('/', $_SERVER['REQUEST_URI']);
-
         if (isset($path[3]) && is_numeric($path[3])) {
             $sql .= " WHERE plate_id = $path[3]";
             $stmt = $conn->prepare($sql);
@@ -33,7 +32,7 @@ switch ($method) {
         $path = explode('/', $_SERVER['REQUEST_URI']);
         
         if (count($path) < 4 || $path[3] != 'New') {
-
+            // search
             $where = "where";
             $And = "";
             $user = json_decode(file_get_contents('php://input'));
@@ -143,7 +142,7 @@ switch ($method) {
             }
 
             if ($stmt->execute()) {
-                $response = ['status' => 1, 'message' => 'Record created successfully.'];
+                // $response = ['status' => 1, 'message' => 'Record created successfully.'];
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 $response = ['status' => 0, 'message' => 'Failed to create record.'];
@@ -151,10 +150,10 @@ switch ($method) {
             echo json_encode($data);
         } else {
            
-// echo 'klk;';
             $user = json_decode(file_get_contents('php://input'));
 
             $sql = "select * from car where plate_id = :plate_id ";
+            // to check thereis no car has the same plate id
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':plate_id', $user->plate_id);
 
@@ -225,12 +224,8 @@ switch ($method) {
 
     case "DELETE":
         $path = explode('/', $_SERVER['REQUEST_URI']);
-
         $sql = "DELETE FROM car WHERE plate_id =$path[4] ";
-   
         $stmt = $conn->prepare($sql);
-       
-
         if ($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record deleted successfully.'];
         } else {

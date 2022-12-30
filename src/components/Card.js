@@ -24,7 +24,6 @@ export default function MediaCard(
           {title}<span> </span>{model}<span> , </span>{year}
         </Typography>
         <Typography gutterBottom variant="h5" >
-       {/* {x} */}
           {nf.format(price)}<span> L.E</span> 
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -34,10 +33,7 @@ export default function MediaCard(
         {status}
         </Typography>
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
+     
     </Card>
   );
 }

@@ -4,50 +4,39 @@ ini_set('display_errors', 1);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
-
 include 'DbConnect.php';
+
 $objDb = new DbConnect;
 $conn = $objDb->connect();
-
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
-  
     case "POST":
         $path = explode('/', $_SERVER['REQUEST_URI']);
         if (count ($path)>3 ){
         if( $path[3] == 'New') {
             $response='';
-
             $user = json_decode(file_get_contents('php://input'));
             $sql = 'select * from user where email = :email ';
             $stmt = $conn->prepare($sql);
-            //echo $user->email;
             $stmt->bindParam(':email', $user->email);
-            // $stmt->bindParam(':password', $user->password);
             if ($stmt->execute()) {
-                // $response = ['status' => 1, 'message' => 'Record created successfully.'];
                 $row = $stmt->fetch();
                 if ($row) {
                     $response = ['status' => 0, 'message' => "Registered before"];
-
                 }
                 else{
-                //   $sql=" INSERT INTO `user`(id,fname,lname,email,password,phone) VALUES (NULL,:firstname,:lastName,:email,:password,:phoneNo) ";
                   $sql=" INSERT INTO `user`(fname , lname , email , `password` ,phone ) VALUES (:firstName , :lastName , :email , MD5(:password) ,:phoneNo) ";
                     $stmt = $conn->prepare($sql);
-                    // echo $user->email.'heeeee';
                     $stmt->bindParam(':firstName', $user->firstName);
                     $stmt->bindParam(':lastName', $user->lastName);
                     $stmt->bindParam(':email', $user->email);
                     $stmt->bindParam(':password', $user->password);
                     $stmt->bindParam(':phoneNo', $user->phoneNo);
-                    // print_r( $stmt);
                     if ($stmt->execute()) {
                     $sql = ' select * from user where email = :email ';
                     $stmt = $conn->prepare($sql);
                     $stmt->bindParam(':email', $user->email);
                     if ($stmt->execute()) {
-                        // $response = ['status' => 1, 'message' => 'Record created successfully.'];
                         $row = $stmt->fetch();
                         $response = ['status' => 1, 'message' => $row['user_id']];
                     }
@@ -66,11 +55,9 @@ switch ($method) {
 
             $sql = "SELECT * from `user` WHERE email = :email and password = MD5 (:password) ";
             $stmt = $conn->prepare($sql);
-            //echo $user->password;
             $stmt->bindParam(':email', $user->email);
             $stmt->bindParam(':password', $user->password);
             if ($stmt->execute()) {
-                // $response = ['status' => 1, 'message' => 'Record created successfully.'];
                 $row = $stmt->fetch();
                 if ($row) {
                     $response = ['status' => 1, 'message' => $row['user_id'] , 'isAdmin'=>$row['is_admin']];
